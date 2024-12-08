@@ -1,0 +1,14 @@
+.block{
+    grid-area: f;
+    background-color: #424242;
+    border-radius: 20px;
+    padding: 0.1em;
+    padding-left: 0.8em;
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-price{
+    padding: 1em;
+}

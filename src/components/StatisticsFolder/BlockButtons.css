@@ -1,0 +1,14 @@
+.blockButtons{
+    grid-area: f;
+    background-color: #424242;
+    border-radius: 20px;
+    padding: 0.1em;
+    padding-left: 0.8em;
+    margin: 1em;
+    justify-content: center;
+    display: flex;
+}
+
+.blockButtons-img{
+    width: 300px;
+}

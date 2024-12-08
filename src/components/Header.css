@@ -1,0 +1,41 @@
+
+.header {
+  grid-area: h;
+  background-color: #121212;
+  border: 1px solid #ccc;
+}
+
+.header img{
+  width: 40px;
+  padding: 0.2em;
+}
+
+.ul-header{
+  display: flex;         /* Горизонтальная структура */
+  list-style: none;      /* Убираем маркеры */
+  margin: 0;
+  padding: 0;
+  gap: 15px; 
+}
+.header-ulList{
+  padding-left: 0.3em;
+}
+.ul-header li{
+   text-align: center;
+}
+
+.ul-header a{
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fbfbfb;
+  background-color: #1e1e1e;
+  border-radius: 10px; /* Закругление краев */
+  transition: background-color 0.3s ease;
+  margin-bottom: 1em;
+}
+
+ul a:hover{
+  color: #711f31; /* Цвет при наведении */
+  text-decoration: underline; 
+}

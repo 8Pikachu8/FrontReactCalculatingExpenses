@@ -1,0 +1,7 @@
+.statistics {
+    grid-area: stat;
+    background-color: #121212;
+    padding: 0.3em;
+    border: 1px solid #ccc;
+    
+}
