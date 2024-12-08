@@ -1,10 +1,10 @@
 import './Block.css'
 
-const Block = () => {
+const Block = (props) => {
 	return (
 		<div className='block'>
-			<div className='block-price'>Тип Продукта</div>
-			<div className='block-price'>block</div>
+			<div className='block-price'>{props.Type}</div>
+			<div className='block-price'>{props.Price}</div>
 		</div>
 	)
 }
