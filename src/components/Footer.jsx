@@ -1,9 +1,10 @@
-import './Footer.css'
+import footerCSS from './Footer.module.css'
 
 const Footer = () => {
 	return (
-		<footer className='footer'>
+		<footer className={footerCSS.footer}>
 			footer + footer
+			
 		</footer>
 	)
 }

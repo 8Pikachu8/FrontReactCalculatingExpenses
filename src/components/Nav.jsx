@@ -1,9 +1,9 @@
-import './Nav.css'
+import navCSS from './Nav.module.css'
 
 const Nav = () => {
 	return (
-		<nav className='nav'>
-			<ul className='ul-nav'>
+		<nav className={navCSS.nav}>
+			<ul className={navCSS.ulNav}>
 				<li>
 					<a href='#'>Меню</a>
 				</li>

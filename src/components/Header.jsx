@@ -1,11 +1,11 @@
-import './Header.css'
+import headerCSS from './Header.module.css'
 
 const Header = () => {
 	return (
-		<header className='header'>
+		<header className={headerCSS.header}>
 			<img src='image.png' alt='Описание изображения' />
-			<div className='header-ulList'>
-				<ul className='ul-header'>
+			<div className={headerCSS.headerUlList}>
+				<ul className={headerCSS.ulHeader}>
 					<li>
 						<a href='#'>Яблоко</a>
 					</li>

@@ -10,21 +10,21 @@
   padding: 0.2em;
 }
 
-.ul-header{
+.ulHeader{
   display: flex;         /* Горизонтальная структура */
   list-style: none;      /* Убираем маркеры */
   margin: 0;
   padding: 0;
   gap: 15px; 
 }
-.header-ulList{
+.headerUlList{
   padding-left: 0.3em;
 }
-.ul-header li{
+.ulHeader li{
    text-align: center;
 }
 
-.ul-header a{
+.ulHeader a{
   display: inline-block;
   padding: 10px 20px;
   text-decoration: none;
