@@ -5,10 +5,10 @@ const Nav = () => {
 		<nav className={navCSS.nav}>
 			<ul className={navCSS.ulNav}>
 				<li>
-					<a href='#'>Меню</a>
+					<a href='#'>Список трат</a>
 				</li>
 				<li>
-					<a href='#'>Добавить запись</a>
+					<a href='#'>Редактировать</a>
 				</li>
 				<li>
 					<a href='#'>Статистика</a>

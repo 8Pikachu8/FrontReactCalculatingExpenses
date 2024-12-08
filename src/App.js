@@ -2,7 +2,7 @@ import AppCSS from './App.module.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Nav from './components/Nav';
-import Statistics from './components/StatisticsFolder/Statistics';
+import Statistics from './components/ContentMain/StatisticsFolder/Statistics';
 
 const App = () => {
   return (
@@ -11,8 +11,6 @@ const App = () => {
 				<Nav/>
 				<Statistics/>
 				<Footer/>
-
-			
 		</div>
 	)
 }
