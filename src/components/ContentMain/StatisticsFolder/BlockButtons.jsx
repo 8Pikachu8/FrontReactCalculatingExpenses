@@ -2,7 +2,7 @@ import './BlockButtons.css'
 
 const BlockButtons = () => {
 	return (
-		<div className='blockButtons'>
+		<div className='block'>
 			<div className='blockButtons-price'>
 				<img
 					className='blockButtons-img'

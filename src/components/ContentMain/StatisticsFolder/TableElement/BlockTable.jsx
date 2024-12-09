@@ -2,7 +2,7 @@ import './BlockTable.css'
 
 const BlockTable = () => {
 	return (
-		<div className='blockTable'>
+		<div className='block'>
 			<div className='blockTable-price'>
 				<p>Таблица</p>
 			</div>

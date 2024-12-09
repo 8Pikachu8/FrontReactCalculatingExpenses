@@ -1,0 +1,12 @@
+.items{
+    display: flex;
+    justify-content: space-between;
+}
+
+.line{
+    height: 1px; /* Толщина линии */
+    background-color: #ccc; /* Цвет линии */
+    width: 100%; /* Линия растягивается на всю ширину */
+    margin: 0; /* Убираем отступы у линии */
+    margin-bottom: 1em;
+}

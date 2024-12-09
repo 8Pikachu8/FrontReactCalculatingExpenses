@@ -3,7 +3,7 @@
 
     grid-template-areas: 
     "h h"
-    "n stat"
+    "n cont"
     "f f";
 
     grid-template-rows: 80px 1fr 60px;
