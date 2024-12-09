@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import navCSS from './Nav.module.css'
 
 const Nav = () => {
@@ -5,13 +6,28 @@ const Nav = () => {
 		<nav className={navCSS.nav}>
 			<ul className={navCSS.ulNav}>
 				<li>
-					<a href='/listProducts'>Список трат</a>
+					<NavLink
+						to='/listProducts'
+						className={props => (props.isActive ? navCSS.activeItemNav : '')}
+					>
+						Список трат
+					</NavLink>
 				</li>
 				<li>
-					<a href='/updateProducts'>Редактировать</a>
+					<NavLink
+						to='/updateProducts'
+						className={props => (props.isActive ? navCSS.activeItemNav : '')}
+					>
+						Редактировать
+					</NavLink>
 				</li>
 				<li>
-					<a href='/staticstics'>Статистика</a>
+					<NavLink
+						to='/staticstics'
+						className={props => (props.isActive ? navCSS.activeItemNav : '')}
+					>
+						Статистика
+					</NavLink>
 				</li>
 			</ul>
 		</nav>
