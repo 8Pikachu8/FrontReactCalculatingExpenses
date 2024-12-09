@@ -6,7 +6,7 @@ const BlockList = props => {
 		<div className='block'>
 			<Product Type='Продукт' Price='143,6 р.' />
 			<Product Type='Продукт' Price='13243,6 р.' />
-			<Product Type='Продукт' Price='1143,6 р.' />
+			<Product Type='Деталь' Price='1143,6 р.' />
 			<Product Type='Продукт' Price='4143,6 р.' />
 		</div>
 	)

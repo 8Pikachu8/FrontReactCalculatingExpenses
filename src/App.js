@@ -4,16 +4,24 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Statistics from './components/ContentMain/StatisticsFolder/Statistics';
 import ListProducts from './components/ContentMain/ListProductsFolder/ListProducts';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UpdateProducts from './components/ContentMain/UpdateProductsFolder/UpdateProducts';
 
 
 const App = () => {
   return (
-		<div className={AppCSS.appWrapper}>
-			<Header />
-			<Nav />
-			<ListProducts />
-			<Footer />
-		</div>
+		<BrowserRouter>
+			<div className={AppCSS.appWrapper}>
+				<Header />
+				<Nav />
+				<Routes>
+					<Route path='/staticstics' element={<Statistics />} />
+					<Route path='/listProducts' element={<ListProducts />} />
+					<Route path='/updateProducts' element={<UpdateProducts />} />
+				</Routes>
+				<Footer />
+			</div>
+		</BrowserRouter>
 	)
 }
 

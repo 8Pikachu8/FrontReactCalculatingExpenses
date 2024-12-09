@@ -5,15 +5,14 @@ const Nav = () => {
 		<nav className={navCSS.nav}>
 			<ul className={navCSS.ulNav}>
 				<li>
-					<a href='#'>Список трат</a>
+					<a href='/listProducts'>Список трат</a>
 				</li>
 				<li>
-					<a href='#'>Редактировать</a>
+					<a href='/updateProducts'>Редактировать</a>
 				</li>
 				<li>
-					<a href='#'>Статистика</a>
+					<a href='/staticstics'>Статистика</a>
 				</li>
-				
 			</ul>
 		</nav>
 	)
