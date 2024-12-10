@@ -1,10 +1,12 @@
 import React from 'react'
 import ButtonCSS from './Button.module.css'
 
-const Button = (props) => {
+const Button = ({ nameButton, onClickHandler }) => {
 	return (
 		<div>
-			<button className={ButtonCSS.button}>{props.nameButton}</button>
+			<button className={ButtonCSS.button} onClick={onClickHandler}>
+				{nameButton}
+			</button>
 		</div>
 	)
 }

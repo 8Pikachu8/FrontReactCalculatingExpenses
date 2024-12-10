@@ -9,7 +9,6 @@ import UpdateProducts from './components/ContentMain/UpdateProductsFolder/Update
 
 
 const App = (props) => {
-	
   return (
 		<BrowserRouter>
 			<div className={AppCSS.appWrapper}>
@@ -29,7 +28,16 @@ const App = (props) => {
 							<ListProducts ProductListPage={props.state.ProductListPage} />
 						}
 					/>
-					<Route path='/updateProducts' element={<UpdateProducts />} />
+					<Route
+						path='/updateProducts'
+						element={
+							<UpdateProducts
+								addProduct={props.addProduct}
+								ProductListPage={props.state.ProductListPage}
+								UpdateFunct={props.UpdateFunct}
+							/>
+						}
+					/>
 				</Routes>
 				<Footer />
 			</div>

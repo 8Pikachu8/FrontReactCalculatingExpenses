@@ -1,10 +1,21 @@
 import React from 'react'
 import InsertCSS from './Insert.module.css'
 
-const Insert = () => {
+const Insert = ({
+	inputRef,
+	lableinput,
+	newValue,
+	FNewChang 
+}) => {
 	return (
 		<div>
-			<input className={InsertCSS.insert}></input>
+			<label>{lableinput}</label>
+			<input
+				className={InsertCSS.insert}
+				ref={inputRef}
+				value={newValue}
+				onChange={FNewChang}
+			></input>
 		</div>
 	)
 }
