@@ -8,7 +8,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UpdateProducts from './components/ContentMain/UpdateProductsFolder/UpdateProducts';
 
 
-const App = () => {
+const App = (props) => {
+	
   return (
 		<BrowserRouter>
 			<div className={AppCSS.appWrapper}>
@@ -16,7 +17,18 @@ const App = () => {
 				<Nav />
 				<Routes>
 					<Route path='/staticstics' element={<Statistics />} />
-					<Route path='/listProducts' element={<ListProducts />} />
+					<Route
+						path='/listProducts/:id'
+						element={
+							<ListProducts ProductListPage={props.state.ProductListPage} />
+						}
+					/>
+					<Route
+						path='/listProducts/'
+						element={
+							<ListProducts ProductListPage={props.state.ProductListPage} />
+						}
+					/>
 					<Route path='/updateProducts' element={<UpdateProducts />} />
 				</Routes>
 				<Footer />

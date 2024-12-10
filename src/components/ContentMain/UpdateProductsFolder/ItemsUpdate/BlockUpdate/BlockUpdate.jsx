@@ -1,6 +1,6 @@
 import React from 'react'
 import BlockUpdateCSS from './BlockUpdate.module.css'
-import Insert from './Insert'
+import Insert from '../Insert/Insert'
 
 const BlockUpdate = () => {
 	return (

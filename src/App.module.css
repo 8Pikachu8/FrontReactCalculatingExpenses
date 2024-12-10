@@ -11,6 +11,12 @@
     color: #fbfbfb;
 }
 
+ul a:hover{
+  color: #711f31; /* Цвет при наведении */
+  text-decoration: none; 
+}
 
-
-
+div a:hover{
+  color: #711f31; /* Цвет при наведении */
+  text-decoration: none; 
+}
