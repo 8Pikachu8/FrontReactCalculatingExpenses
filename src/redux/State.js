@@ -1,5 +1,4 @@
-import { rerenderApp } from "./Render"
-
+let rerenderApp = (state) =>{}
 
 let ProductList = [
 	{
@@ -96,6 +95,10 @@ export let UpdateShop = val => {state.ProductListPage.newValue.Shop = val
 
 export let UpdateType = val => {state.ProductListPage.newValue.Type = val
 	rerenderApp(state)
+}
+
+export const subscrube = (observ) => {
+	rerenderApp = observ
 }
 
 export default state;
