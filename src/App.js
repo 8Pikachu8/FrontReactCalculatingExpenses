@@ -19,22 +19,20 @@ const App = (props) => {
 					<Route
 						path='/listProducts/:id'
 						element={
-							<ListProducts ProductListPage={props.state.ProductListPage} />
+							<ListProducts ProductListPage={props.store.GetState()} />
 						}
 					/>
 					<Route
 						path='/listProducts/'
 						element={
-							<ListProducts ProductListPage={props.state.ProductListPage} />
+							<ListProducts ProductListPage={props.store.GetState()} />
 						}
 					/>
 					<Route
 						path='/updateProducts'
 						element={
 							<UpdateProducts
-								addProduct={props.addProduct}
-								ProductListPage={props.state.ProductListPage}
-								UpdateFunct={props.UpdateFunct}
+								store = {props.store}
 							/>
 						}
 					/>

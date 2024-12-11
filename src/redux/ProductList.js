@@ -2,67 +2,119 @@
  let ProductListPage = {
 
 	_state: {
+		ProductList: [
+			{
+				Type: 'Деталь',
+				Price: '133,6 р.',
+				Product: 'Творожанная масса',
+				Date: '23.09.2001',
+				Count: '1',
+				Shop: 'Пятерочка',
+			},
+			{
+				Type: 'Продукт',
+				Price: '13243,6 р.',
+				Product: 'телеграм канал',
+				Date: '13.11.2024',
+				Count: '1',
+				Shop: 'дмитрий никотин',
+			},
+			{
+				Type: 'Связь',
+				Price: '750,6 р.',
+				Product: 'интернет',
+				Date: '12.11.2024',
+				Count: '1',
+				Shop: 'дом ру',
+			},
+			{
+				Type: 'Продукт',
+				Price: '110,6 р.',
+				Product: 'сыр плавленный',
+				Date: '14.11.2024',
+				Count: '1',
+				Shop: 'molochnyj dom',
+			},
+		],
+		ListFiltrs: [
+			{ NameElement: 'Фильтр', Id: '1' },
+			{ NameElement: 'Второй фильтр', Id: '2' },
+			{ NameElement: 'Третий фильтр', Id: '3' },
+			{ NameElement: 'Третий фильтр', Id: '3' },
+		],
+		newValue: {
+			Type: 'Деталь',
+			Price: '133,6 р.',
+			Product: 'Творожанная масса',
+			Date: new Date().toISOString().split('T')[0],
+			Count: '1',
+			Shop: 'Пятерочка',
+		}
 		
 	},
 
 	SetState(state){
+		
 		this._state = state
+	},
+
+	GetState(){
+		return this._state
 	},
 
 	RerenderApp() {},
 
-	_addProduct() {
+	addProduct() {
+		debugger
 		let newproduct = {
-			Product: this.State.ProductListPage.newValue.Product,
-			Price: this.State.ProductListPage.newValue.Price,
-			Date: this.State.ProductListPage.newValue.Date,
-			Count: this.State.ProductListPage.newValue.Count,
-			Shop: this.State.ProductListPage.newValue.Shop,
-			Type: this.State.ProductListPage.newValue.Type,
+			Product: this.GetState().newValue.Product,
+			Price: this.GetState().newValue.Price,
+			Date: this.GetState().newValue.Date,
+			Count: this.GetState().newValue.Count,
+			Shop: this.GetState().newValue.Shop,
+			Type: this.GetState().newValue.Type,
 		}
-		this.State.ProductListPage.ProductList.push(newproduct)
-		this.State.ProductListPage.newValue.Type = ''
-		this.State.ProductListPage.newValue.Price = ''
-		this.State.ProductListPage.newValue.Product = ''
-		this.State.ProductListPage.newValue.Shop = ''
-		this.State.ProductListPage.newValue.Date = new Date().toISOString().split('T')[0]
-		this.State.ProductListPage.newValue.Count = '1'
-		this.RerenderApp(this.State)
+		this.GetState().ProductList.push(newproduct)
+		this.GetState().newValue.Type = ''
+		this.GetState().newValue.Price = ''
+		this.GetState().newValue.Product = ''
+		this.GetState().newValue.Shop = ''
+		this.GetState().newValue.Date = new Date().toISOString().split('T')[0]
+		this.GetState().newValue.Count = '1'
+		this.RerenderApp(this.GetState())
 	},
 
-	_UpdateProduct(val)  {
-		this.State.ProductListPage.newValue.Product = val
-		this.RerenderApp(this.State)
+	UpdateProduct(val)  {
+		this.GetState().newValue.Product = val
+		this.RerenderApp(this.GetState())
     },
 
-	_UpdatePrice(val) {
-		this.State.ProductListPage.newValue.Price = val
-		this.RerenderApp(this.State)
+	UpdatePrice(val) {
+		this.GetState().newValue.Price = val
+		this.RerenderApp(this.GetState())
     },
 
-	_UpdateDate(val) {
-		this.State.ProductListPage.newValue.Date = val
-		this.RerenderApp(this.State)
+	UpdateDate(val) {
+		this.GetState().newValue.Date = val
+		this.RerenderApp(this.GetState())
     },
 
-	_UpdateCount(val)  {
-		this.State.ProductListPage.newValue.Count = val
-		this.RerenderApp(this.State)
+	UpdateCount(val)  {
+		this.GetState().newValue.Count = val
+		this.RerenderApp(this.GetState())
     },
 	
-	_UpdateShop(val) {
-		this.State.ProductListPage.newValue.Shop = val
-		this.RerenderApp(this.State)
+	UpdateShop(val) {
+		this.GetState().newValue.Shop = val
+		this.RerenderApp(this.GetState())
     },
 
-	_UpdateType(val) {
-		debugger
-		this.State.ProductListPage.newValue.Type = val
-		this.RerenderApp(this.State)
+	UpdateType(val) {
+		this.GetState().newValue.Type = val
+		this.RerenderApp(this.GetState())
     },
 
 	SetSubscribe(observer) {
-		debugger
 		this.RerenderApp = observer
 	}
 }

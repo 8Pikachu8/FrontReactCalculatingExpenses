@@ -2,7 +2,6 @@ import blockCSS from './BlockList.module.css'
 import Product from './Product/Product'
 
 const BlockList = props => {
-	
 	let product = props.ProductList.map(product => (
 		<Product
 			Type={product.Type}

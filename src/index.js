@@ -2,33 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App.js'
-import state, {
-	addProduct,
-	UpdateProduct,
-	UpdatePrice,
-	UpdateDate,
-    UpdateCount,
-    UpdateShop,
-    UpdateType,
-subscrube} from './redux/State.js'
+import prodlist from './redux/ProductList.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-const functions = [
-	UpdateProduct,
-	UpdatePrice,
-	UpdateDate,
-	UpdateCount,
-	UpdateShop,
-	UpdateType
-]
-export let rerenderApp = (state) => {
+
+export let rerenderApp = () => {
     
 	root.render(
 		<React.StrictMode>
-			<App state={state} addProduct={addProduct} UpdateFunct = {functions}/>
+			<App store = {prodlist} />
 		</React.StrictMode>
 	)
 }
-rerenderApp(state)
 
-subscrube(rerenderApp)
+rerenderApp(prodlist.GetState())
+prodlist.SetSubscribe(rerenderApp)
