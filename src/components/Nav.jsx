@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import navCSS from './Nav.module.css'
 
-const Nav = ({ isVisible}) => {
+const Nav = ({ isVisible, toggleNavVisibility}) => {
 	
 	return (
-		<nav className={navCSS.nav } style={{ display: isVisible ? 'block' : 'none' }}>
+		<nav className={`${navCSS.nav} ${isVisible ? navCSS.visible : ''}`} >
+			<button className = {navCSS.ulButton} onClick={toggleNavVisibility}>=</button>
 			<ul className={navCSS.ulNav}>
 				<li>
 					<NavLink

@@ -75,7 +75,7 @@ const UpdateProducts = (props) => {
 		onChangePriceVlaue,
 	]
 	return (
-		<div className={UpdateProductCSS.updateProducts}>
+		<div className={UpdateProductCSS.updateProducts} onClick={props.toggleNavVisibility }>
 			<BlockUpdate
 				inputTypeRef={inputTypeRef}
 				InputMagazinRef={InputMagazinRef}

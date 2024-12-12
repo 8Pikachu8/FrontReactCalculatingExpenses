@@ -5,7 +5,7 @@ import BlockTasks from "./ItemsTasks/BlockTasks";
 
 const DailyTasks = (props) => {
     return (
-			<div className={dailyTasksCSS.dailyTasks}>
+			<div className={dailyTasksCSS.dailyTasks} onClick={props.toggleNavVisibility }>
 				<BlockWeeks store = {props.store}
 								dispatch = {props.dispatch}/>
 				<BlockTasks store = {props.store}

@@ -3,7 +3,6 @@ import headerCSS from './Header.module.css'
 const Header = ({toggleNavVisibility}) => {
 	return (
 		<header className={headerCSS.header}>
-			<img src='image.png' alt='Описание изображения' />
 			<div className={headerCSS.headerUlList}>
 				
 				<ul className={headerCSS.ulHeader}>
