@@ -1,0 +1,7 @@
+.dailyTasks{
+    display: grid;
+     grid-template-areas: 
+    "weeks tasks";
+
+    grid-template-columns: 3fr 7fr;
+}

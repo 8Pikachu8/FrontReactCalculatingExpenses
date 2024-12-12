@@ -29,6 +29,14 @@ const Nav = () => {
 						Статистика
 					</NavLink>
 				</li>
+				<li>
+					<NavLink
+						to='/dailyTasks'
+						className={props => (props.isActive ? navCSS.activeItemNav : '')}
+					>
+						Заметки
+					</NavLink>
+				</li>
 			</ul>
 		</nav>
 	)

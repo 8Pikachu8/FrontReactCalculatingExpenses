@@ -1,0 +1,18 @@
+.listProducts{
+    grid-area: weeks;
+    list-style-type: none;
+    font-weight: bold; /* Жирный */
+    text-align: left;
+    padding: 10px; 
+}
+
+.listProducts a{
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fbfbfb;
+    background-color: #1e1e1e;
+    border-radius: 10px; /* Закругление краев */
+    transition: background-color 0.3s ease;
+    margin-bottom: 1em;
+}

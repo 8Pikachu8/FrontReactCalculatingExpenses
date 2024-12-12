@@ -2,6 +2,16 @@ import React from 'react'
 import BlockUpdate from './ItemsUpdate/BlockUpdate/BlockUpdate'
 import BlockButtons from './ItemsUpdate/BlockButtons/BlockButtons'
 import BlockList from '../ListProductsFolder/BlocksElemets/BlockList'
+import {AddProductActionCreator,
+	UpdateProductActionCreator,
+	UpdatePriceActionCreator,
+	UpdateDateActionCreator,
+	UpdateCountActionCreator,
+	UpdateShopActionCreator,
+	UpdateTypeActionCreator,
+	
+} from '../../../redux/UpdPageCreateActions'
+
 const UpdateProducts = (props) => {
 
 	const inputTypeRef = React.useRef() // Создаем реф для input
@@ -12,53 +22,47 @@ const UpdateProducts = (props) => {
 	const InputCountRef = React.useRef()
 
 	const handleInsert = () => {
-		debugger;
 		if (inputTypeRef.current) {
-			props.store.addProduct(
-				InputProductNameRef.current.value,
-				InputPriceRef.current.value,
-				InputDateRef.current.value,
-				InputCountRef.current.value,
-				InputMagazinRef.current.value,
-				inputTypeRef.current.value
+			props.dispatch(
+				AddProductActionCreator()
 			)
 		}
 	}
 
 	const onChangeProductNameVlaue = () => {
 		let text = InputProductNameRef.current.value
-		props.store.UpdateProduct(text)
+		props.dispatch(UpdateProductActionCreator(text))
 		console.log(text)
 	}
 
 	const onChangePriceVlaue = () => {
 		let text = InputPriceRef.current.value
-		props.store.UpdatePrice(text)
+		props.dispatch(UpdatePriceActionCreator(text))
 		console.log(text)
 	}
  
 	const onChangeDateVlaue = () => {
 		let text = InputDateRef.current.value
-		props.store.UpdateDate(text)
+		props.dispatch(UpdateDateActionCreator(text))
 		console.log(text)
 	}
 
 	const onChangeCountVlaue = () => {
 		let text = InputCountRef.current.value
-		props.store.UpdateCount(text)
+		props.dispatch(UpdateCountActionCreator(text))
 		console.log(text)
 	}
 
 	const onChangeMagazinVlaue = () => {
 		let text = InputMagazinRef.current.value
-		props.store.UpdateShop(text)
+		props.dispatch(UpdateShopActionCreator(text))
 		console.log(text)
 	}
 
 	const onChangeTypeVlaue = () => {
 		debugger;
 		let text = inputTypeRef.current.value
-		props.store.UpdateType(text)
+		props.dispatch(UpdateTypeActionCreator(text))
 		console.log(text)
 	}
 
@@ -70,7 +74,6 @@ const UpdateProducts = (props) => {
 		onChangeTypeVlaue,
 		onChangePriceVlaue,
 	]
-
 	return (
 		<div>
 			<BlockUpdate
@@ -80,11 +83,11 @@ const UpdateProducts = (props) => {
 				InputProductNameRef={InputProductNameRef}
 				InputPriceRef={InputPriceRef}
 				InputCountRef={InputCountRef}
-				NewValues={props.store.GetState().newValue}
+				NewValues={props.store.GetState().UpdateProductPage.newValue}
 				FNewChang={newFunctions}
 			/>
 			<BlockButtons onInsert={handleInsert} />
-			<BlockList ProductList={props.store.GetState().ProductList} />
+			<BlockList ProductList={props.store.GetState().UpdateProductPage.ProductList} />
 		</div>
 	)
 }

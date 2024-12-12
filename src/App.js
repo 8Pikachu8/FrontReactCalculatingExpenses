@@ -6,6 +6,7 @@ import Statistics from './components/ContentMain/StatisticsFolder/Statistics';
 import ListProducts from './components/ContentMain/ListProductsFolder/ListProducts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UpdateProducts from './components/ContentMain/UpdateProductsFolder/UpdateProducts';
+import DailyTasks from './components/ContentMain/DailyTasks/DailyTasks';
 
 
 const App = (props) => {
@@ -33,9 +34,12 @@ const App = (props) => {
 						element={
 							<UpdateProducts
 								store = {props.store}
+								dispatch = {props.dispatch}
 							/>
 						}
 					/>
+					<Route path='/dailyTasks' element={<DailyTasks store = {props.store.GetState().DailyTasksPage}
+								dispatch = {props.dispatch}/>} />
 				</Routes>
 				<Footer />
 			</div>
