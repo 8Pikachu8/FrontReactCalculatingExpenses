@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import navCSS from './Nav.module.css'
 
-const Nav = () => {
+const Nav = ({ isVisible}) => {
+	
 	return (
-		<nav className={navCSS.nav}>
+		<nav className={navCSS.nav } style={{ display: isVisible ? 'block' : 'none' }}>
 			<ul className={navCSS.ulNav}>
 				<li>
 					<NavLink

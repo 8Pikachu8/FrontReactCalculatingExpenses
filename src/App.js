@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import AppCSS from './App.module.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -10,23 +11,29 @@ import DailyTasks from './components/ContentMain/DailyTasks/DailyTasks';
 
 
 const App = (props) => {
+	const [isNavVisible, setIsNavVisible] = useState(true); // Состояние для видимости навигации
+
+  // Функция для переключения видимости
+  const toggleNavVisibility = () => {
+    setIsNavVisible(prevState => !prevState);
+  };
   return (
 		<BrowserRouter>
-			<div className={AppCSS.appWrapper}>
-				<Header />
-				<Nav />
+			<div className={AppCSS.appWrapper + ' ' + `${!isNavVisible ? AppCSS.navHidden : ''}`}>
+				<Header toggleNavVisibility={toggleNavVisibility} />
+        		<Nav className = {`${!isNavVisible ? AppCSS.navHidden : ''}`} isVisible={isNavVisible} />
 				<Routes>
 					<Route path='/staticstics' element={<Statistics />} />
 					<Route
 						path='/listProducts/:id'
 						element={
-							<ListProducts ProductListPage={props.store.GetState()} />
+							<ListProducts ProductListPage={props.store.getState()} />
 						}
 					/>
 					<Route
 						path='/listProducts/'
 						element={
-							<ListProducts ProductListPage={props.store.GetState()} />
+							<ListProducts ProductListPage={props.store.getState()} />
 						}
 					/>
 					<Route
@@ -38,7 +45,7 @@ const App = (props) => {
 							/>
 						}
 					/>
-					<Route path='/dailyTasks' element={<DailyTasks store = {props.store.GetState().DailyTasksPage}
+					<Route path='/dailyTasks' element={<DailyTasks store = {props.store.getState().DailyTasksPage}
 								dispatch = {props.dispatch}/>} />
 				</Routes>
 				<Footer />

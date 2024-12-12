@@ -9,6 +9,15 @@
     grid-template-rows: 80px 1fr 60px;
     grid-template-columns: 2fr 10fr;
     color: #fbfbfb;
+    height: 100vh;
+}
+
+/* Когда навигация скрыта */
+.appWrapper.navHidden {
+    grid-template-areas: 
+        "h h"
+        "cont cont"
+        "f f";
 }
 
 ul a:hover{

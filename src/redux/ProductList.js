@@ -1,12 +1,4 @@
-import {
-	AddType,
-	UpdateProduct,
-	UpdatePrice,
-	UpdateDate,
-	UpdateCount,
-	UpdateShop,
-	UpdateType,
-} from './UpdPageCreateActions'
+
 import { UpdateProductReducer } from './UpdateProduc-reducer'
 import {DailyTasksReducer } from './DailyTasks-reducer'
 

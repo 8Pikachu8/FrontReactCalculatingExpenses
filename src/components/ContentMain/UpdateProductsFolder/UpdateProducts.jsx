@@ -2,6 +2,7 @@ import React from 'react'
 import BlockUpdate from './ItemsUpdate/BlockUpdate/BlockUpdate'
 import BlockButtons from './ItemsUpdate/BlockButtons/BlockButtons'
 import BlockList from '../ListProductsFolder/BlocksElemets/BlockList'
+import  UpdateProductCSS  from './UpdateProducts.module.css'
 import {AddProductActionCreator,
 	UpdateProductActionCreator,
 	UpdatePriceActionCreator,
@@ -60,7 +61,6 @@ const UpdateProducts = (props) => {
 	}
 
 	const onChangeTypeVlaue = () => {
-		debugger;
 		let text = inputTypeRef.current.value
 		props.dispatch(UpdateTypeActionCreator(text))
 		console.log(text)
@@ -75,7 +75,7 @@ const UpdateProducts = (props) => {
 		onChangePriceVlaue,
 	]
 	return (
-		<div>
+		<div className={UpdateProductCSS.updateProducts}>
 			<BlockUpdate
 				inputTypeRef={inputTypeRef}
 				InputMagazinRef={InputMagazinRef}
@@ -83,11 +83,11 @@ const UpdateProducts = (props) => {
 				InputProductNameRef={InputProductNameRef}
 				InputPriceRef={InputPriceRef}
 				InputCountRef={InputCountRef}
-				NewValues={props.store.GetState().UpdateProductPage.newValue}
+				NewValues={props.store.getState().UpdateProductPage.newValue}
 				FNewChang={newFunctions}
 			/>
 			<BlockButtons onInsert={handleInsert} />
-			<BlockList ProductList={props.store.GetState().UpdateProductPage.ProductList} />
+			<BlockList ProductList={props.store.getState().UpdateProductPage.ProductList} />
 		</div>
 	)
 }

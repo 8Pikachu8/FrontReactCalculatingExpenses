@@ -1,4 +1,5 @@
 .dailyTasks{
+    grid-area: cont;
     display: grid;
      grid-template-areas: 
     "weeks tasks";

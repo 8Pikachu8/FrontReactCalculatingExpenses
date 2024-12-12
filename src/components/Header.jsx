@@ -1,11 +1,15 @@
 import headerCSS from './Header.module.css'
 
-const Header = () => {
+const Header = ({toggleNavVisibility}) => {
 	return (
 		<header className={headerCSS.header}>
 			<img src='image.png' alt='Описание изображения' />
 			<div className={headerCSS.headerUlList}>
+				
 				<ul className={headerCSS.ulHeader}>
+					<li>
+						<button className = {headerCSS.ulButton} onClick={toggleNavVisibility}>=</button>
+					</li>
 					<li>
 						<a href='#'>Яблоко</a>
 					</li>
