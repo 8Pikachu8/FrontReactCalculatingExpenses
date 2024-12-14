@@ -1,7 +1,7 @@
 import { combineReducers} from "redux";
 import { configureStore } from '@reduxjs/toolkit';
-import {DailyTasksReducer }from './DailyTasks-reducer'
-import {UpdateProductReducer} from './UpdateProduc-reducer'
+import {DailyTasksReducer }from './DailyTask/DailyTasks-reducer'
+import {UpdateProductReducer} from './UpdateProduct/UpdateProduc-reducer'
 
 let reducers = combineReducers(
     {

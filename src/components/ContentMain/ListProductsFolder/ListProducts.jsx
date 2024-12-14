@@ -4,11 +4,12 @@ import BlockList from "./BlocksElemets/BlockList";
 import BlockFiltr from "./BlocksElemets/BlockFiltr";
 
 const ListProducts = (props) => {
+	debugger
     return (
 			<div className={listProductsCSS.listProducts} onClick={props.toggleNavVisibility }>
-				<BlockList ProductList={props.ProductListPage.UpdateProductPage.ProductList} />
+				<BlockList ProductList={props.ProductListPage.ProductList} />
 				<BlockFiltr
-					ListFiltrs={props.ProductListPage.UpdateProductPage.ListFiltrs}
+					ListFiltrs={props.ProductListPage.ListFiltrs}
 					Type='Элемент фильтрации'
 				/>
 			</div>

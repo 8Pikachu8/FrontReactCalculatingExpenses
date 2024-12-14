@@ -2,7 +2,6 @@ import React from 'react'
 import InsertCSS from './Insert.module.css'
 
 const Insert = ({
-	inputRef,
 	lableinput,
 	newValue,
 	FNewChang 
@@ -12,7 +11,6 @@ const Insert = ({
 			<label>{lableinput}</label>
 			<input
 				className={InsertCSS.insert}
-				ref={inputRef}
 				value={newValue}
 				onChange={FNewChang}
 			></input>

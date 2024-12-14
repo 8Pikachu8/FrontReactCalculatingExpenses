@@ -37,20 +37,20 @@ const App = (props) => {
 					<Route
 						path='/listProducts/:id'
 						element={
-							<ListProducts toggleNavVisibility={toggleNavVisibilityREv}  ProductListPage={props.store.getState()} />
+							<ListProducts toggleNavVisibility={toggleNavVisibilityREv}  ProductListPage={props.store.getState().UpdateProductPage} />
 						}
 					/>
 					<Route
 						path='/listProducts/'
 						element={
-							<ListProducts toggleNavVisibility={toggleNavVisibilityREv}  ProductListPage={props.store.getState()} />
+							<ListProducts toggleNavVisibility={toggleNavVisibilityREv}  ProductListPage={props.store.getState().UpdateProductPage} />
 						}
 					/>
 					<Route
 						path='/updateProducts'
 						element={
 							<UpdateProducts toggleNavVisibility={toggleNavVisibilityREv} 
-								store = {props.store}
+								store = {props.store.getState().UpdateProductPage}
 								dispatch = {props.dispatch}
 							/>
 						}

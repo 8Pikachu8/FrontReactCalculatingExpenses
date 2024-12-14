@@ -11,57 +11,51 @@ import {AddProductActionCreator,
 	UpdateShopActionCreator,
 	UpdateTypeActionCreator,
 	
-} from '../../../redux/UpdPageCreateActions'
+} from '../../../redux/UpdateProduct/UpdPageCreateActions'
 
 const UpdateProducts = (props) => {
 
-	const inputTypeRef = React.useRef() // Создаем реф для input
-	const InputMagazinRef = React.useRef()
-	const InputDateRef = React.useRef()
-	const InputProductNameRef = React.useRef()
-	const InputPriceRef = React.useRef()
-	const InputCountRef = React.useRef()
 
 	const handleInsert = () => {
-		if (inputTypeRef.current) {
+		debugger
 			props.dispatch(
 				AddProductActionCreator()
 			)
-		}
+	
 	}
 
-	const onChangeProductNameVlaue = () => {
-		let text = InputProductNameRef.current.value
+	const onChangeProductNameVlaue = (event) => {
+		let text = event.target.value
 		props.dispatch(UpdateProductActionCreator(text))
 		console.log(text)
 	}
 
-	const onChangePriceVlaue = () => {
-		let text = InputPriceRef.current.value
+	const onChangePriceVlaue = (event) => {
+		let text = event.target.value
 		props.dispatch(UpdatePriceActionCreator(text))
 		console.log(text)
 	}
  
-	const onChangeDateVlaue = () => {
-		let text = InputDateRef.current.value
+	const onChangeDateVlaue = (event) => {
+		let text = event.target.value
 		props.dispatch(UpdateDateActionCreator(text))
 		console.log(text)
 	}
 
-	const onChangeCountVlaue = () => {
-		let text = InputCountRef.current.value
+	const onChangeCountVlaue = (event) => {
+		let text = event.target.value
 		props.dispatch(UpdateCountActionCreator(text))
 		console.log(text)
 	}
 
-	const onChangeMagazinVlaue = () => {
-		let text = InputMagazinRef.current.value
+	const onChangeMagazinVlaue = (event) => {
+		let text = event.target.value
 		props.dispatch(UpdateShopActionCreator(text))
 		console.log(text)
 	}
 
-	const onChangeTypeVlaue = () => {
-		let text = inputTypeRef.current.value
+	const onChangeTypeVlaue = (event) => {
+		let text = event.target.value
 		props.dispatch(UpdateTypeActionCreator(text))
 		console.log(text)
 	}
@@ -74,20 +68,15 @@ const UpdateProducts = (props) => {
 		onChangeTypeVlaue,
 		onChangePriceVlaue,
 	]
+	debugger
 	return (
 		<div className={UpdateProductCSS.updateProducts} onClick={props.toggleNavVisibility }>
 			<BlockUpdate
-				inputTypeRef={inputTypeRef}
-				InputMagazinRef={InputMagazinRef}
-				InputDateRef={InputDateRef}
-				InputProductNameRef={InputProductNameRef}
-				InputPriceRef={InputPriceRef}
-				InputCountRef={InputCountRef}
-				NewValues={props.store.getState().UpdateProductPage.newValue}
+				NewValues={props.store.newValue}
 				FNewChang={newFunctions}
 			/>
 			<BlockButtons onInsert={handleInsert} />
-			<BlockList ProductList={props.store.getState().UpdateProductPage.ProductList} />
+			<BlockList ProductList={props.store.ProductList} />
 		</div>
 	)
 }

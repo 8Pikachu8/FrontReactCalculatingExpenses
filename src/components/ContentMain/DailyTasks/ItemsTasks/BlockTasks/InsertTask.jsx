@@ -1,6 +1,6 @@
 import React from "react";
 import insertTaskCSS from "./InsertTask.module.css";
-import {UpdateTaskActionCreator,AddTaskActionCreator} from './../../../../../redux/UpdTasksCreateActions'
+import {UpdateTaskActionCreator,AddTaskActionCreator} from './../../../../../redux/DailyTask/UpdTasksCreateActions'
 
 const InsertTask = (props) => {
     const inputRef = React.useRef(null);

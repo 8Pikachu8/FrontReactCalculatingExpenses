@@ -1,7 +1,7 @@
 import React from 'react'
 import InputDateCSS from './InputDate.module.css'
 
-const InputDate = ({ inputRef, lableinput, newValue, FNewChang }) => {
+const InputDate = ({ lableinput, newValue, FNewChang }) => {
 	
 	return (
 		<div>
@@ -10,7 +10,6 @@ const InputDate = ({ inputRef, lableinput, newValue, FNewChang }) => {
 				onChange={FNewChang}
 				className={InputDateCSS.insert}
 				type='date'
-				ref={inputRef}
 				value={newValue}
 			></input>
 		</div>
