@@ -8,6 +8,8 @@ import ListProducts from './components/ContentMain/ListProductsFolder/ListProduc
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UpdateProducts from './components/ContentMain/UpdateProductsFolder/UpdateProducts';
 import DailyTasks from './components/ContentMain/DailyTasks/DailyTasks';
+import ConteinerUP from './components/ContentMain/UpdateProductsFolder/ConteinerUP';
+import ConteinerDT from './components/ContentMain/DailyTasks/ConteinerDT';
 
 
 const App = (props) => {
@@ -24,7 +26,6 @@ const App = (props) => {
 	}
     
   };
-
   return (
 		<BrowserRouter>
 			<div className={AppCSS.appWrapper + ' ' + `${!isNavVisible ? AppCSS.navHidden : ''}`}>
@@ -49,13 +50,13 @@ const App = (props) => {
 					<Route
 						path='/updateProducts'
 						element={
-							<UpdateProducts toggleNavVisibility={toggleNavVisibilityREv} 
+							<ConteinerUP toggleNavVisibility={toggleNavVisibilityREv} 
 								store = {props.store.getState().UpdateProductPage}
 								dispatch = {props.dispatch}
 							/>
 						}
 					/>
-					<Route path='/dailyTasks' element={<DailyTasks toggleNavVisibility={toggleNavVisibilityREv}  store = {props.store.getState().DailyTasksPage}
+					<Route path='/dailyTasks' element={<ConteinerDT toggleNavVisibility={toggleNavVisibilityREv}  store = {props.store.getState().DailyTasksPage}
 								dispatch = {props.dispatch}/>} />
 				</Routes>
 				<Footer />

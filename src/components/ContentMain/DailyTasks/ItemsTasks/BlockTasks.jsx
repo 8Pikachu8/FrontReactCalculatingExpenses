@@ -7,7 +7,7 @@ const BlockTasks = (props) => {
     return (
 			<div className={blockTasksCSS.listTasks}>
 				<Task listTasks = {props.store.listTasks}/>
-				<InsertTask newTask ={props.store.newTask} dispatch = {props.dispatch}/>
+				<InsertTask newTask ={props.store.newTask} CallBackUpdate = {props.CallBackUpdate} CallBackAdd = {props.CallBackAdd}/>
 			</div>
 		)
 }
