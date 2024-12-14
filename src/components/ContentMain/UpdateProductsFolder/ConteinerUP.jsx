@@ -61,7 +61,7 @@ const ConteinerUP = (props) => {
 		onChangePriceVlaue,
 	]
 	return (
-		<UpdateProducts store = {props.store} newFunctions = {newFunctions} handleInsert={handleInsert} toggleNavVisibility = {props.toggleNavVisibility}/>
+		<UpdateProducts store = {props.store} newFunctions = {newFunctions} handleInsert={handleInsert} />
 	)
 }
 

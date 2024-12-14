@@ -20,12 +20,7 @@ const App = (props) => {
     setIsNavVisible(prevState => !prevState);
   };
 
-  const toggleNavVisibilityREv = () => {
-	if(isNavVisible){
-		setIsNavVisible(prevState => !prevState);
-	}
-    
-  };
+  
   return (
 		<BrowserRouter>
 			<div className={AppCSS.appWrapper + ' ' + `${!isNavVisible ? AppCSS.navHidden : ''}`}>
@@ -34,29 +29,29 @@ const App = (props) => {
 				
 				<Header toggleNavVisibility={toggleNavVisibility} />
 				<Routes>
-					<Route path='/staticstics' element={<Statistics toggleNavVisibility={toggleNavVisibilityREv} />} />
+					<Route path='/staticstics' element={<Statistics />} />
 					<Route
 						path='/listProducts/:id'
 						element={
-							<ListProducts toggleNavVisibility={toggleNavVisibilityREv}  ProductListPage={props.store.getState().UpdateProductPage} />
+							<ListProducts ProductListPage={props.store.getState().UpdateProductPage} />
 						}
 					/>
 					<Route
 						path='/listProducts/'
 						element={
-							<ListProducts toggleNavVisibility={toggleNavVisibilityREv}  ProductListPage={props.store.getState().UpdateProductPage} />
+							<ListProducts ProductListPage={props.store.getState().UpdateProductPage} />
 						}
 					/>
 					<Route
 						path='/updateProducts'
 						element={
-							<ConteinerUP toggleNavVisibility={toggleNavVisibilityREv} 
+							<ConteinerUP  
 								store = {props.store.getState().UpdateProductPage}
 								dispatch = {props.dispatch}
 							/>
 						}
 					/>
-					<Route path='/dailyTasks' element={<ConteinerDT toggleNavVisibility={toggleNavVisibilityREv}  store = {props.store.getState().DailyTasksPage}
+					<Route path='/dailyTasks' element={<ConteinerDT  store = {props.store.getState().DailyTasksPage}
 								dispatch = {props.dispatch}/>} />
 				</Routes>
 				<Footer />

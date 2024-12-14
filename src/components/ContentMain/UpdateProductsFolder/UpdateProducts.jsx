@@ -7,7 +7,7 @@ import  UpdateProductCSS  from './UpdateProducts.module.css'
 
 const UpdateProducts = (props) => {
 	return (
-		<div className={UpdateProductCSS.updateProducts} onClick={props.toggleNavVisibility }>
+		<div className={UpdateProductCSS.updateProducts} >
 			<BlockUpdate
 				NewValues={props.store.newValue}
 				FNewChang={props.newFunctions}

@@ -4,8 +4,7 @@ import navCSS from './Nav.module.css'
 const Nav = ({ isVisible, toggleNavVisibility}) => {
 	
 	return (
-		<nav className={`${navCSS.nav} ${isVisible ? navCSS.visible : ''}`} >
-			<button className = {navCSS.ulButton} onClick={toggleNavVisibility}>=</button>
+		<nav className={`${navCSS.nav} ${!isVisible ? navCSS.visible : ''}`} >
 			<ul className={navCSS.ulNav}>
 				<li>
 					<NavLink

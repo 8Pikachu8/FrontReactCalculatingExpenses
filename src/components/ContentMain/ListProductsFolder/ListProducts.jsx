@@ -6,7 +6,7 @@ import BlockFiltr from "./BlocksElemets/BlockFiltr";
 const ListProducts = (props) => {
 	debugger
     return (
-			<div className={listProductsCSS.listProducts} onClick={props.toggleNavVisibility }>
+			<div className={listProductsCSS.listProducts}>
 				<BlockList ProductList={props.ProductListPage.ProductList} />
 				<BlockFiltr
 					ListFiltrs={props.ProductListPage.ListFiltrs}

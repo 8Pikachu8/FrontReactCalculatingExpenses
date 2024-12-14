@@ -16,7 +16,7 @@ const ConteinerDT = (props) => {
 
 
     return (
-			<DailyTasks toggleNavVisibility={props.toggleNavVisibility}  store = {props.store}
+			<DailyTasks store = {props.store}
 								CallBackUpdate = {onChangeTaskVlaue} CallBackAdd = {onClickTaskAdd}/>
 		)
 }

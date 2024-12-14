@@ -1,23 +1,22 @@
 .nav{
-    position: fixed; /* Фиксируем позицию относительно окна */
-  top: 0;
-  left: 0;
-  width: 200px; /* Ширина панели */
-  height: 100vh; /* Высота на весь экран */
+  
+  grid-area: nav;
   background-color: #121212;
   border-right: 1px solid #ccc;
-  transform: translateX(-100%); /* По умолчанию скрыто за пределами экрана */
   transition: transform 0.3s ease-in-out; /* Анимация выезда */
   z-index: 1000; /* Чтобы быть поверх всего */
 }
-.nav.visible {
-  transform: translateX(0); /* Показываем панель */
+
+.nav.visible{
+  display: none;
 }
+
 .ulNav{
     list-style-type: none;
     font-weight: bold; /* Жирный */
     text-align: left;
     padding: 10px; 
+    margin-top: 1em;
 }
 
 .ulNav a{
@@ -35,15 +34,4 @@
     background-color: #3f3f3f;
     color: #bdbdbd;
     text-decoration: none;
-}
-
-.nav .ulButton{
-  background-color: #1e1e1e;
-  color: #fbfbfb;
-  margin: 0.3em;
-
-  margin-left: 1.3em;
-  margin-top: 1.3em;
-
-  padding: 0.4em 0.7em;
 }

@@ -5,7 +5,7 @@ import statisticCSS from  './Statistics.module.css'
 
 const Statistics = (props) => {
 	return (
-		<div className={statisticCSS.statistics} onClick={props.toggleNavVisibility }>
+		<div className={statisticCSS.statistics}>
 			<div style={{ display: 'block'  }}>
 			<BlockTable />
 			<Block Price='123' Type='Продукт' />
