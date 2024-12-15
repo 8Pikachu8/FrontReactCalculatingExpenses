@@ -9,60 +9,53 @@ import {AddProductActionCreator,
 	
 } from '../../../redux/UpdateProduct/UpdPageCreateActions'
 import UpdateProducts from './UpdateProducts'
+import { connect } from 'react-redux'
 
-const ConteinerUP = (props) => {
 
-	const handleInsert = () => {
-		props.dispatch(AddProductActionCreator())
+const mapStateToProps = (state) =>{
+	return {
+		store: state.UpdateProductPage,
 	}
-
-	const onChangeProductNameVlaue = (event) => {
-		let text = event.target.value
-		props.dispatch(UpdateProductActionCreator(text))
-		console.log(text)
-	}
-
-	const onChangePriceVlaue = (event) => {
-		let text = event.target.value
-		props.dispatch(UpdatePriceActionCreator(text))
-		console.log(text)
-	}
- 
-	const onChangeDateVlaue = (event) => {
-		let text = event.target.value
-		props.dispatch(UpdateDateActionCreator(text))
-		console.log(text)
-	}
-
-	const onChangeCountVlaue = (event) => {
-		let text = event.target.value
-		props.dispatch(UpdateCountActionCreator(text))
-		console.log(text)
-	}
-
-	const onChangeMagazinVlaue = (event) => {
-		let text = event.target.value
-		props.dispatch(UpdateShopActionCreator(text))
-		console.log(text)
-	}
-
-	const onChangeTypeVlaue = (event) => {
-		let text = event.target.value
-		props.dispatch(UpdateTypeActionCreator(text))
-		console.log(text)
-	}
-
-	let newFunctions = [
-		onChangeProductNameVlaue,
-		onChangeDateVlaue,
-		onChangeCountVlaue,
-		onChangeMagazinVlaue,
-		onChangeTypeVlaue,
-		onChangePriceVlaue,
-	]
-	return (
-		<UpdateProducts store = {props.store} newFunctions = {newFunctions} handleInsert={handleInsert} />
-	)
 }
 
+const mapDispatchToProps = (dispatch) =>{
+	return {
+		handleInsert: () => {
+			dispatch(AddProductActionCreator())
+		},
+		onChangeProductNameVlaue: (event) => {
+			let text = event.target.value
+			dispatch(UpdateProductActionCreator(text))
+			console.log(text)
+		},
+		onChangePriceVlaue: (event) => {
+			let text = event.target.value
+			dispatch(UpdatePriceActionCreator(text))
+			console.log(text)
+		},
+		onChangeDateVlaue: (event) => {
+			let text = event.target.value
+			dispatch(UpdateDateActionCreator(text))
+			console.log(text)
+		},
+		onChangeCountVlaue: (event) => {
+			let text = event.target.value
+			dispatch(UpdateCountActionCreator(text))
+			console.log(text)
+		},
+		onChangeMagazinVlaue: (event) => {
+			let text = event.target.value
+			dispatch(UpdateShopActionCreator(text))
+			console.log(text)
+		},
+		onChangeTypeVlaue: (event) => {
+			let text = event.target.value
+			dispatch(UpdateTypeActionCreator(text))
+			console.log(text)
+		},
+		
+	}
+}
+
+const ConteinerUP = connect(mapStateToProps, mapDispatchToProps)(UpdateProducts)
 export default ConteinerUP

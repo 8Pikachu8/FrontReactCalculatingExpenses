@@ -1,24 +1,27 @@
-import React from "react";
 import {UpdateTaskActionCreator,AddTaskActionCreator} from './../../../redux/DailyTask/UpdTasksCreateActions'
 import DailyTasks from "./DailyTasks";
+import { connect } from "react-redux";
 
-const ConteinerDT = (props) => {
 
-    const onClickTaskAdd = () =>{
-        props.dispatch(AddTaskActionCreator())
+const mapStateToProps = (state) =>{
+    return {
+        store: state.DailyTasksPage,
     }
-
-    const onChangeTaskVlaue = (event) => {
-        let text = event.target.value
-        props.dispatch(UpdateTaskActionCreator(text))
-        console.log(text)
-    }
-
-
-    return (
-			<DailyTasks store = {props.store}
-								CallBackUpdate = {onChangeTaskVlaue} CallBackAdd = {onClickTaskAdd}/>
-		)
 }
+
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        CallBackUpdate: (event) => {
+            let text = event.target.value
+            dispatch(UpdateTaskActionCreator(text))
+            console.log(text)
+        },
+        CallBackAdd: () => {
+            dispatch(AddTaskActionCreator())
+        }
+    }
+}
+
+const ConteinerDT = connect(mapStateToProps, mapDispatchToProps)(DailyTasks)
 
 export default ConteinerDT;

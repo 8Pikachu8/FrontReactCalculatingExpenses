@@ -10,9 +10,10 @@ import UpdateProducts from './components/ContentMain/UpdateProductsFolder/Update
 import DailyTasks from './components/ContentMain/DailyTasks/DailyTasks';
 import ConteinerUP from './components/ContentMain/UpdateProductsFolder/ConteinerUP';
 import ConteinerDT from './components/ContentMain/DailyTasks/ConteinerDT';
+import ConteinerLP from './components/ContentMain/ListProductsFolder/ConteinerLP';
 
 
-const App = (props) => {
+const App = () => {
 	const [isNavVisible, setIsNavVisible] = useState(true); // Состояние для видимости навигации
 
   // Функция для переключения видимости
@@ -20,7 +21,6 @@ const App = (props) => {
     setIsNavVisible(prevState => !prevState);
   };
 
-  
   return (
 		<BrowserRouter>
 			<div className={AppCSS.appWrapper + ' ' + `${!isNavVisible ? AppCSS.navHidden : ''}`}>
@@ -33,26 +33,25 @@ const App = (props) => {
 					<Route
 						path='/listProducts/:id'
 						element={
-							<ListProducts ProductListPage={props.store.getState().UpdateProductPage} />
+							<ConteinerLP />
 						}
 					/>
 					<Route
 						path='/listProducts/'
 						element={
-							<ListProducts ProductListPage={props.store.getState().UpdateProductPage} />
+							<ConteinerLP />
 						}
 					/>
 					<Route
 						path='/updateProducts'
 						element={
-							<ConteinerUP  
-								store = {props.store.getState().UpdateProductPage}
-								dispatch = {props.dispatch}
-							/>
+							<ConteinerUP />
 						}
 					/>
-					<Route path='/dailyTasks' element={<ConteinerDT  store = {props.store.getState().DailyTasksPage}
-								dispatch = {props.dispatch}/>} />
+					<Route path='/dailyTasks' 
+						element={
+							<ConteinerDT />
+						} />
 				</Routes>
 				<Footer />
 			</div>

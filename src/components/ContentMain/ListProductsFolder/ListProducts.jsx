@@ -7,9 +7,9 @@ const ListProducts = (props) => {
 	debugger
     return (
 			<div className={listProductsCSS.listProducts}>
-				<BlockList ProductList={props.ProductListPage.ProductList} />
+				<BlockList ProductList={props.store.ProductList} />
 				<BlockFiltr
-					ListFiltrs={props.ProductListPage.ListFiltrs}
+					ListFiltrs={props.store.ListFiltrs}
 					Type='Элемент фильтрации'
 				/>
 			</div>
