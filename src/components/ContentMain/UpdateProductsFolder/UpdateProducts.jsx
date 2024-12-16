@@ -9,7 +9,7 @@ const UpdateProducts = (props) => {
 	return (
 		<div className={UpdateProductCSS.updateProducts} >
 			<BlockUpdate
-				NewValues={props.store.newValue}
+				NewValues={props.newValue}
 				onChangeProductNameVlaue={props.onChangeProductNameVlaue}
 				onChangePriceVlaue={props.onChangePriceVlaue}
 				onChangeDateVlaue={props.onChangeDateVlaue}
@@ -18,7 +18,7 @@ const UpdateProducts = (props) => {
 				onChangeTypeVlaue={props.onChangeTypeVlaue}
 			/>
 			<BlockButtons onInsert={props.handleInsert} />
-			<BlockList ProductList={props.store.ProductList} />
+			<BlockList ProductList={props.ProductList} />
 		</div>
 	)
 }

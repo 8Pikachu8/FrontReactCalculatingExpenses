@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) =>{
     return {
-        store: state.DailyTasksPage,
+        listWeeks: state.DailyTasksPage.listWeeks,
+        listTasks: state.DailyTasksPage.listTasks,
+        newDay: state.DailyTasksPage.newDay,
+        newTask: state.DailyTasksPage.newTask,
     }
 }
 

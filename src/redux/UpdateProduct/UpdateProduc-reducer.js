@@ -126,12 +126,20 @@ let defState = {
 					Count: '1',
 					Shop: 'molochnyj dom',
 				},
+                {
+					Type: 'Продукт',
+					Price: '110,6 р.',
+					Product: 'сыр плавленный',
+					Date: '14.11.2024',
+					Count: '1',
+					Shop: 'molochnyj dom',
+				},
 			],
 			ListFiltrs: [
 				{ NameElement: 'Фильтр', Id: '1' },
 				{ NameElement: 'Второй фильтр', Id: '2' },
 				{ NameElement: 'Третий фильтр', Id: '3' },
-				{ NameElement: 'Третий фильтр', Id: '3' },
+				{ NameElement: 'Четвертый фильтр', Id: '3' },
 			],
 			newValue: {
 				Type: 'Деталь',

@@ -4,7 +4,7 @@ import navCSS from './../../../Nav.module.css'
 import { NavLink } from "react-router-dom";
 
 const BlockWeeks = (props) => {
-	let product = props.store.listWeeks.map(product => (
+	let product = props.listWeeks.map(product => (
 		
             <NavLink to=''>
                         <div>День номер {product.Id}</div>

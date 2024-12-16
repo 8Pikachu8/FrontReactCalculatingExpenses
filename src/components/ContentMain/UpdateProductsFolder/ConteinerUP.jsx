@@ -14,7 +14,8 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) =>{
 	return {
-		store: state.UpdateProductPage,
+		ProductList: state.UpdateProductPage.ProductList,
+		newValue: state.UpdateProductPage.newValue,
 	}
 }
 
