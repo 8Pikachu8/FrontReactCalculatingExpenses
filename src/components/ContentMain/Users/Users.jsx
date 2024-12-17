@@ -1,98 +1,39 @@
 import React from "react";
 import usersCSS from "./Users.module.css";
 import User from "./user/User";
-import axios from "axios";
+import LoaderSpiner from "./../../../assets/LoaderSpiner.svg"
 
-class Users extends React.Component {
-    constructor(props) {
-        super(props);
-        this.countLoad = 0;
-    }
 
-    componentDidMount() {
-        const str = `/api/1.0/users?page=${this.props.currentPage}`;
-        axios.get(str).then(response => {
-            this.props.CallBackSetUsers(response.data.items);
-            this.props.CallBackSetTotalUserCount(response.data.totalCount);
-        });
-    }
-
-    componentWillUnmount() {
-        this.props.CallBackSetUsers([]);
-        this.props.CallBackSetTotalUserCount(0);
-    }
-
-    fetchUsers = () => {
-        debugger
-        this.countLoad = this.countLoad + 1;
-        const str = `/api/1.0/users?page=${this.props.currentPage + this.countLoad}&count=10`;
-        axios.get(str).then(response => {
-            this.props.CallBackSetUsers(response.data.items);
-        });
-    };
-
-    setPage = (val) => {
-        const str = `/api/1.0/users?page=${val}&count=10`;
-        axios.get(str).then(response => {
-            this.props.CallBackSetPage(val, response.data.items);
-        });
-    };
-
-    renderUsers = () => {
-        return this.props.users.map(user => (
+let Users = (props) => {
+    const renderUsers = () => {
+        
+        return props.users.map(user => (
             <User
                 key={user.id}
-                CallBackFollow={this.props.CallBackFollow}
-                CallBackUnFollow={this.props.CallBackUnFollow}
+                follow={props.follow}
+                unfollow={props.unfollow}
                 user={user}
             />
         ));
     };
 
-    renderItemsPages = () => {
-        let listUsers = [];
-        for (let i = 1; i <= Math.ceil(this.props.countUsers / 10); i++) {
-            listUsers.push(i);
-        }
-
-        const arr = listUsers.map(val => (
-            <div
-                key={val}
-                onClick={() => this.setPage(val)}
-                className={this.props.currentPage === val ? usersCSS.ItemPagesSelected : usersCSS.ItemPages}
-            >
-                {val}
-            </div>
-        ));
-
-        if (arr.length <= 10) {
-            return arr;
-        }
-
-        const firstFive = arr.slice(0, 5);
-        const lastFive = arr.slice(-5);
-        return [...firstFive, ...lastFive];
-    };
-
-    render() {
-        return (
-            <div>
+    return <div>
+                {props.isFetching === true? <img className={usersCSS.img} src = {LoaderSpiner}/>: null}
                 <div className={usersCSS.ListPages}>
-                    {this.renderItemsPages()}
+                    {props.renderItemsPages()}
                 </div>
                 <div className={usersCSS.users}>
-                    <div ref={this.pagesDivRef} className={usersCSS.usersMaped}>
-                        {this.renderUsers()}
+                    <div  className={usersCSS.usersMaped}>
+                        {renderUsers()}
                     </div>
                 </div>
                 <div className={usersCSS.buttonDiv}>
-                    <button onClick={this.fetchUsers} className={usersCSS.button}>
+                    <button onClick={props.fetchUsers} className={usersCSS.button}>
                         Загрузить еще
                     </button>
                 </div>
             </div>
-        );
-    }
 }
+
 
 export default Users;

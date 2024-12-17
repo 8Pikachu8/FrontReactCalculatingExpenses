@@ -3,7 +3,8 @@ import {
     UNFOLLOW,
     SET_USERS,
     SET_CURRENT_PAGE,
-    SET_TOTAL_USERS_COUNT
+    SET_TOTAL_USERS_COUNT,
+    TOGGLE_IS_FETCHING
 } from './UsersAC'
 
 
@@ -13,7 +14,11 @@ let defState = {
 
     countUsers: 1003,
 
-    currentPage: 10
+    currentPage: 1,
+
+    countLoad: 0,
+
+    isFetching: true
 }
 
 export const UsersReducer = (state = defState, action) =>{
@@ -28,13 +33,14 @@ export const UsersReducer = (state = defState, action) =>{
             return setCurrentPage(state, action);
         case SET_TOTAL_USERS_COUNT:
             return setTotalUsersCount(state, action);
+        case TOGGLE_IS_FETCHING:
+            return setFetching(state, action);
         default:
             return state;
     }
 }
 
 const follow = (state, action) => {
-    debugger
     return {...state,
                 users: state.users.map(u => {
                 if(u.id === action.id){
@@ -54,30 +60,36 @@ const unfollow = (state, action) => {
 }
 
 const setUsers = (state, action) => {
-    debugger
     const temp = {
         ...state,
         users: [...state.users, ...action.users.filter(newUser => 
-    !state.users.some(existingUser => existingUser.id === newUser.id))]};
+    !state.users.some(existingUser => existingUser.id === newUser.id))],
+        countLoad: state.countLoad + 1};
     return temp
     
 }
 
 const setCurrentPage = (state, action) => {
-    debugger
     const temp = {
         ...state,
         users: [...action.users],
-        currentPage: action.page};
+        currentPage: action.page,
+        countLoad: 1,};
     return temp
     
 }
 
 const setTotalUsersCount = (state, action) => {
-    debugger
     const temp = {
         ...state,
         countUsers: action.usersCount};
     return temp
     
+}
+
+const setFetching = (state, action) => {
+    const temp = {
+        ...state,
+        isFetching: action.isFetching};
+    return temp
 }

@@ -16,7 +16,7 @@ const User = (props) => {
                 </div>
 			</div>
             <div className={userCSS.buttonDiv}>
-                {props.user.followed?<button onClick={() => { props.CallBackUnFollow(props.user.id)}} className={userCSS.button}>Отписаться</button>:<button onClick={() => { props.CallBackFollow(props.user.id)}} className={userCSS.button}>Подписаться</button>}
+                {props.user.followed?<button onClick={() => { props.unfollow(props.user.id)}} className={userCSS.button}>Отписаться</button>:<button onClick={() => { props.follow(props.user.id)}} className={userCSS.button}>Подписаться</button>}
                 
             </div>
         </div>
