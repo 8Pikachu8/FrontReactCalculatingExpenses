@@ -1,11 +1,18 @@
 import React from "react";
 import userCSS from "./User.module.css";
 import userPhoto from './../../../../assets/logo192.png'
+import { NavLink } from "react-router-dom";
 
 const User = (props) => {
+    debugger
     return (
         <div className={userCSS.user}>
-            <img className={userCSS.image} src = {props.user.photos.small != null?props.user.photos.small:userPhoto }/>
+             <NavLink
+						to={`../profile/${props.user.id}`}
+						
+					>
+                        <img className={userCSS.image} src = {props.user.photos.small != null?props.user.photos.small:userPhoto }/>
+					</NavLink>
 			<div className='block' >
                 <div className={userCSS.userDescription}>
                     <div>{props.user.name}</div>

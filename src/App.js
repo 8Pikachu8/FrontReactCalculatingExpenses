@@ -9,6 +9,7 @@ import ConteinerUP from './components/ContentMain/UpdateProductsFolder/Conteiner
 import ConteinerDT from './components/ContentMain/DailyTasks/ConteinerDT';
 import ConteinerLP from './components/ContentMain/ListProductsFolder/ConteinerLP';
 import UsersConteiner from './components/ContentMain/Users/UsersConteiner';
+import ProfileConteiner from './components/ContentMain/Profile/ProfileConteiner';
 
 
 const App = () => {
@@ -28,12 +29,7 @@ const App = () => {
 				<Header toggleNavVisibility={toggleNavVisibility} />
 				<Routes>
 					<Route path='/staticstics' element={<Statistics />} />
-					<Route
-						path='/listProducts/:id'
-						element={
-							<ConteinerLP />
-						}
-					/>
+					
 					<Route
 						path='/listProducts/'
 						element={
@@ -54,6 +50,16 @@ const App = () => {
 						element={
 							<UsersConteiner />
 						} />
+					<Route path='/profile' 
+						element={
+							<ProfileConteiner />
+						} />
+
+					<Route path='/profile/:id?' 
+						element={
+							<ProfileConteiner />
+						} />
+					
 				</Routes>
 				<Footer />
 			</div>
