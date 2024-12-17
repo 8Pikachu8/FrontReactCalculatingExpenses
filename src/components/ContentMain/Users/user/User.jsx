@@ -10,7 +10,7 @@ const User = (props) => {
                 <div className={userCSS.userDescription}>
                     <div>{props.user.name}</div>
                     <div>
-                        <div>{props.user.Country}</div>
+                        <div>{props.user.status}</div>
                         <div>{props.user.City}</div>
                     </div>
                 </div>

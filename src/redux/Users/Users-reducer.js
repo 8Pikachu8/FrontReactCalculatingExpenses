@@ -54,9 +54,11 @@ const unfollow = (state, action) => {
 }
 
 const setUsers = (state, action) => {
+    debugger
     const temp = {
         ...state,
-        users: [...state.users,  ...action.users]};
+        users: [...state.users, ...action.users.filter(newUser => 
+    !state.users.some(existingUser => existingUser.id === newUser.id))]};
     return temp
     
 }
