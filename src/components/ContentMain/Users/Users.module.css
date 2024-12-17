@@ -29,3 +29,20 @@
     border-color: #720404; /* (необязательно) Изменить цвет границы */
     box-shadow: -2px -2px 5px #ddd;
 }
+
+.ListPages{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ItemPages{
+    padding: 5px;
+    font-size: large;
+}
+
+.ItemPagesSelected{
+    padding: 5px;
+    font-weight: bold; /* Жирный шрифт */
+    font-size: large;
+}

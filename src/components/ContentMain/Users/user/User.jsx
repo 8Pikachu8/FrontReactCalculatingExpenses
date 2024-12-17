@@ -3,10 +3,9 @@ import userCSS from "./User.module.css";
 import userPhoto from './../../../../assets/logo192.png'
 
 const User = (props) => {
-    debugger
     return (
         <div className={userCSS.user}>
-            <img className={userCSS.image} src = {props.user.small != null?props.user.small:userPhoto }/>
+            <img className={userCSS.image} src = {props.user.photos.small != null?props.user.photos.small:userPhoto }/>
 			<div className='block' >
                 <div className={userCSS.userDescription}>
                     <div>{props.user.name}</div>

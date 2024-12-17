@@ -1,7 +1,9 @@
 import {
 	FOLLOW,
     UNFOLLOW,
-    SET_USERS
+    SET_USERS,
+    SET_CURRENT_PAGE,
+    SET_TOTAL_USERS_COUNT
 } from './UsersAC'
 
 
@@ -9,7 +11,9 @@ let defState = {
 
     users: [ ],
 
-    countUsers: 0
+    countUsers: 1003,
+
+    currentPage: 10
 }
 
 export const UsersReducer = (state = defState, action) =>{
@@ -20,6 +24,10 @@ export const UsersReducer = (state = defState, action) =>{
             return unfollow(state, action); 
         case SET_USERS:
             return setUsers(state, action); 
+        case SET_CURRENT_PAGE:
+            return setCurrentPage(state, action);
+        case SET_TOTAL_USERS_COUNT:
+            return setTotalUsersCount(state, action);
         default:
             return state;
     }
@@ -49,6 +57,25 @@ const setUsers = (state, action) => {
     const temp = {
         ...state,
         users: [...state.users,  ...action.users]};
+    return temp
+    
+}
+
+const setCurrentPage = (state, action) => {
+    debugger
+    const temp = {
+        ...state,
+        users: [...action.users],
+        currentPage: action.page};
+    return temp
+    
+}
+
+const setTotalUsersCount = (state, action) => {
+    debugger
+    const temp = {
+        ...state,
+        countUsers: action.usersCount};
     return temp
     
 }
