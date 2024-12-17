@@ -4,7 +4,6 @@ import BlockList from "./BlocksElemets/BlockList";
 import BlockFiltr from "./BlocksElemets/BlockFiltr";
 
 const ListProducts = (props) => {
-	debugger
     return (
 			<div className={listProductsCSS.listProducts}>
 				<BlockList ProductList={props.store.ProductList} />

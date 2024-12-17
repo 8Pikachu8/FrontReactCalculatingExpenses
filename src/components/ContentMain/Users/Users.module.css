@@ -1,0 +1,31 @@
+.users{
+    display: flex;
+    justify-content: center;
+}
+
+.usersMaped{
+    padding-top: 50px;
+    max-width: 1050px;
+    flex-grow: 1;/* растягивает элемент на все ширину, если родитель яв flex */
+}
+
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.button{
+    padding: 11px 16px;
+    line-height: 17.52px;
+    background-color: initial;
+    border: 1px solid #ddd;
+    color: #ddd;
+    box-shadow: #ddd;
+    box-shadow: 1px 1px 5px #ddd;
+}
+
+.button:active {
+    color: #610202; /* Цвет текста при нажатии */
+    border-color: #720404; /* (необязательно) Изменить цвет границы */
+    box-shadow: -2px -2px 5px #ddd;
+}

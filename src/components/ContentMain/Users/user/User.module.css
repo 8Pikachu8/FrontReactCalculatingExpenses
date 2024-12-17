@@ -1,0 +1,41 @@
+.user{
+    display: flex;
+    padding: 10px;
+}
+
+.userDescription{
+    display: flex;
+    justify-content: space-between;
+}
+
+.image{
+    width: 4em;
+    border-radius: 30px;
+}
+
+.buttonDiv{
+    display: flex;
+    align-items: center;
+}
+
+.button{
+    padding: 5px 6px;
+    background-color: initial;
+    border: 1px solid #ddd;
+    color: #ddd;
+    box-shadow: #ddd;
+    box-shadow: 1px 1px 5px #ddd;
+    border-radius: 5px;
+    width: 100px; /* Фиксированная ширина */
+    height: 40px; /* Фиксированная высота */
+    text-align: center; /* Центрирование текста */
+    line-height: 30px; /* Вертикальное центрирование текста */
+    overflow: hidden; /* Скрыть излишки текста */
+    white-space: nowrap; /* Запрет переноса текста */
+}
+
+.button:active {
+    color: #610202; /* Цвет текста при нажатии */
+    border-color: #720404; /* (необязательно) Изменить цвет границы */
+    box-shadow: -2px -2px 5px #ddd;
+}

@@ -68,4 +68,6 @@ code {
     padding-left: 0.9em;
     padding-right: 0.9em;
     margin: 1em;
+    
+    flex-grow: 1;/* растягивает элемент на все ширину, если родитель яв flex */
 }

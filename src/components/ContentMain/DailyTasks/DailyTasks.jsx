@@ -4,6 +4,7 @@ import BlockWeeks from "./ItemsTasks/BlockWeeks";
 import BlockTasks from "./ItemsTasks/BlockTasks";
 
 const DailyTasks = (props) => {
+	console.log("mapStateToProps called", props.listTasks);
     return (
 			<div className={dailyTasksCSS.dailyTasks} >
 				<BlockWeeks listWeeks = {props.listWeeks} />

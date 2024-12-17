@@ -38,6 +38,14 @@ const Nav = ({ isVisible, toggleNavVisibility}) => {
 						Заметки
 					</NavLink>
 				</li>
+				<li>
+					<NavLink
+						to='/users'
+						className={props => (props.isActive ? navCSS.activeItemNav : '')}
+					>
+						Пользователи
+					</NavLink>
+				</li>
 			</ul>
 		</nav>
 	)

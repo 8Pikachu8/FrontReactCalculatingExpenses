@@ -4,13 +4,11 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Statistics from './components/ContentMain/StatisticsFolder/Statistics';
-import ListProducts from './components/ContentMain/ListProductsFolder/ListProducts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import UpdateProducts from './components/ContentMain/UpdateProductsFolder/UpdateProducts';
-import DailyTasks from './components/ContentMain/DailyTasks/DailyTasks';
 import ConteinerUP from './components/ContentMain/UpdateProductsFolder/ConteinerUP';
 import ConteinerDT from './components/ContentMain/DailyTasks/ConteinerDT';
 import ConteinerLP from './components/ContentMain/ListProductsFolder/ConteinerLP';
+import UsersConteiner from './components/ContentMain/Users/UsersConteiner';
 
 
 const App = () => {
@@ -51,6 +49,10 @@ const App = () => {
 					<Route path='/dailyTasks' 
 						element={
 							<ConteinerDT />
+						} />
+					<Route path='/users' 
+						element={
+							<UsersConteiner />
 						} />
 				</Routes>
 				<Footer />
