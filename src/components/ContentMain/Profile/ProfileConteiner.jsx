@@ -10,8 +10,7 @@ class ProfileConteiner extends React.Component {
     
     componentDidMount() {
         debugger
-        
-        const str = this.props.userId ?`/api/1.0/profile/${this.props.userId}` :`/api/1.0/profile/${2}`;
+        const str = this.props.userId ?`/api/1.0/profile/${this.props.userId}` :`/api/1.0/profile/${this.props.authId?this.props.authId:2}`;
         axios.get(str).then(response => {
             this.props.AddProfile(response.data);
         });
@@ -29,6 +28,7 @@ const mapStateToProps = (state) =>{
         contacts: state.ProfilePage.contacts,
         photos: state.ProfilePage.photos,
         lookingForAJob: state.ProfilePage.lookingForAJob,
+        authId: state.AuthPage.id
     }
 }
 
@@ -46,7 +46,6 @@ const mapDispatchToProps = (dispatch) =>{
 }
 
 const WithRouterProfile = (props) => {
-    debugger
     const { id } = useParams();
     return <ProfileConteiner {...props} userId={id} />;
 };

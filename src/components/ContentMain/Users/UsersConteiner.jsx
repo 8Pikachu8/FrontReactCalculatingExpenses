@@ -15,7 +15,9 @@ class UsersConteiner extends React.Component {
     componentDidMount() {
         const str = `/api/1.0/users?page=${this.props.currentPage}`;
         this.props.ToggleIsFetching(true)
-        axios.get(str).then(response => {
+        axios.get(str, { headers: {
+        "Authorization": "Bearer c53c392f-f277-4151-adf7-e7718d3ad0a7"
+    }}).then(response => {
             this.props.setUsers(response.data.items);
             this.props.SetTotalUsersCount(response.data.totalCount);
             this.props.ToggleIsFetching(false)
@@ -30,7 +32,9 @@ class UsersConteiner extends React.Component {
     fetchUsers = () => {
         const str = `/api/1.0/users?page=${this.props.currentPage + this.props.countLoad}&count=10`;
         this.props.ToggleIsFetching(true)
-        axios.get(str).then(response => {
+        axios.get(str, { headers: {
+        "Authorization": "Bearer c53c392f-f277-4151-adf7-e7718d3ad0a7"
+    }}).then(response => {
             this.props.setUsers(response.data.items);
             this.props.ToggleIsFetching(false)
         });
@@ -39,7 +43,9 @@ class UsersConteiner extends React.Component {
     setPage = (val) => {
         const str = `/api/1.0/users?page=${val}&count=10`;
         this.props.ToggleIsFetching(true)
-        axios.get(str).then(response => {
+        axios.get(str, { headers: {
+        "Authorization": "Bearer c53c392f-f277-4151-adf7-e7718d3ad0a7"
+    }}).then(response => {
             this.props.SetCurrentPage(val, response.data.items);
             this.props.ToggleIsFetching(false)
         });

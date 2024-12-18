@@ -4,13 +4,15 @@ import {DailyTasksReducer }from './DailyTask/DailyTasks-reducer'
 import {UpdateProductReducer} from './UpdateProduct/UpdateProduc-reducer'
 import {UsersReducer} from './Users/Users-reducer'
 import {ProfileReducer} from './Profile/ProfileReducer'
+import {AuthReducer} from './Auth/AuthReducer'
 
 let reducers = combineReducers(
     {
         UpdateProductPage:    UpdateProductReducer,
         DailyTasksPage:     DailyTasksReducer,
         UsersPage:     UsersReducer,
-        ProfilePage:  ProfileReducer
+        ProfilePage:  ProfileReducer,
+        AuthPage: AuthReducer
     }
 );
 

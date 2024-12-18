@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AppCSS from './App.module.css';
 import Footer from './components/Footer';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import Nav from './components/Nav';
 import Statistics from './components/ContentMain/StatisticsFolder/Statistics';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -10,6 +10,8 @@ import ConteinerDT from './components/ContentMain/DailyTasks/ConteinerDT';
 import ConteinerLP from './components/ContentMain/ListProductsFolder/ConteinerLP';
 import UsersConteiner from './components/ContentMain/Users/UsersConteiner';
 import ProfileConteiner from './components/ContentMain/Profile/ProfileConteiner';
+import HeaderConteiner from './components/Header/HeaderConteiner';
+import AuthConteiner from './components/ContentMain/Auth/AuthConteiner';
 
 
 const App = () => {
@@ -26,7 +28,7 @@ const App = () => {
 				
         		<Nav toggleNavVisibility={toggleNavVisibility}  className = {`${!isNavVisible ? AppCSS.navHidden : ''}`} isVisible={isNavVisible} />
 				
-				<Header toggleNavVisibility={toggleNavVisibility} />
+				<HeaderConteiner toggleNavVisibility={toggleNavVisibility} />
 				<Routes>
 					<Route path='/staticstics' element={<Statistics />} />
 					
@@ -58,6 +60,10 @@ const App = () => {
 					<Route path='/profile/:id?' 
 						element={
 							<ProfileConteiner />
+						} />
+					<Route path='/auth' 
+						element={
+							<AuthConteiner />
 						} />
 					
 				</Routes>
