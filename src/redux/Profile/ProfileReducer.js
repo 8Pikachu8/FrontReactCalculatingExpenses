@@ -1,6 +1,7 @@
 import {
     addProfile,
-    updateProfile
+    updateProfile,
+    TOGGLE_IS_FETCHING
 } from './ProfileCA'
 
 const AddProfile = (newState) => {
@@ -22,7 +23,8 @@ const AddProfile = (newState) => {
         photos: { 
             small: newState.photos.small,
             large: newState.photos.large
-        }
+        },
+        isFetching: newState.isFetching
     };
 
     return {
@@ -36,6 +38,15 @@ const UpdateProfile = (val, state) => {
         newTask: { ...state.newTask, Task: val }, // Создаем новый объект с обновленным значением
     };
 };
+
+const setFetching = (state, action) => {
+    const temp = {
+        ...state,
+        isFetching: action.isFetching,
+    };
+
+    return temp
+}
 
 
 let defState = {
@@ -56,7 +67,9 @@ let defState = {
     photos: { 
         small: "string",
         large: "string"
-    }
+    },
+
+    isFetching: true
 }
 export const ProfileReducer = (state = defState, action) =>{
     switch (action.type) {
@@ -64,6 +77,8 @@ export const ProfileReducer = (state = defState, action) =>{
             return AddProfile(action.user); // Возвращаем новое состояние
         case updateProfile:
             return UpdateProfile(action.val, state); // Возвращаем новое состояние
+        case TOGGLE_IS_FETCHING:
+                    return setFetching(state, action);
         default:
             return state;
     }

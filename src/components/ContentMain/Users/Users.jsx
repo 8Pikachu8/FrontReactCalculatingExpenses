@@ -2,7 +2,7 @@ import React from "react";
 import usersCSS from "./Users.module.css";
 import User from "./user/User";
 import LoaderSpiner from "./../../../assets/LoaderSpiner.svg"
-
+import TupeSpiner from "./../../../assets/tube-spinner.svg"
 
 let Users = (props) => {
     const renderUsers = () => {
@@ -16,7 +16,6 @@ let Users = (props) => {
             />
         ));
     };
-
     return <div>
                 {props.isFetching === true? <img className={usersCSS.img} src = {LoaderSpiner}/>: null}
                 <div className={usersCSS.ListPages}>
@@ -28,9 +27,10 @@ let Users = (props) => {
                     </div>
                 </div>
                 <div className={usersCSS.buttonDiv}>
-                    <button onClick={props.fetchUsers} className={usersCSS.button}>
+                    {props.isFetchingLoader ? <button onClick={props.fetchUsers} className={usersCSS.button}>
                         Загрузить еще
-                    </button>
+                    </button>: <img className={usersCSS.imgLoader}  src = {TupeSpiner} />}
+                    
                 </div>
             </div>
 }

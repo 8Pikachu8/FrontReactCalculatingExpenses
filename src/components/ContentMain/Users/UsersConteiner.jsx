@@ -1,9 +1,10 @@
-import {follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching} from './../../../redux/Users/UsersAC'
+import {follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader} from './../../../redux/Users/UsersAC'
 import Users from "./Users";
 import { connect } from "react-redux";
 import axios from "axios";
 import React from "react";
 import usersCSS from "./Users.module.css";
+import { GetUsersCurrentPage, GetUsersDefault, GetUsersPreloadingOnePage } from '../../../api/api';
 
 
 class UsersConteiner extends React.Component {
@@ -13,11 +14,9 @@ class UsersConteiner extends React.Component {
     }
 
     componentDidMount() {
-        const str = `/api/1.0/users?page=${this.props.currentPage}`;
+        
         this.props.ToggleIsFetching(true)
-        axios.get(str, { headers: {
-        "Authorization": "Bearer c53c392f-f277-4151-adf7-e7718d3ad0a7"
-    }}).then(response => {
+        GetUsersDefault(this.props.currentPage).then(response => {
             this.props.setUsers(response.data.items);
             this.props.SetTotalUsersCount(response.data.totalCount);
             this.props.ToggleIsFetching(false)
@@ -30,27 +29,21 @@ class UsersConteiner extends React.Component {
     }
 
     fetchUsers = () => {
-        const str = `/api/1.0/users?page=${this.props.currentPage + this.props.countLoad}&count=10`;
-        this.props.ToggleIsFetching(true)
-        axios.get(str, { headers: {
-        "Authorization": "Bearer c53c392f-f277-4151-adf7-e7718d3ad0a7"
-    }}).then(response => {
+        this.props.ToggleIsFetchingLoader(false)
+        GetUsersPreloadingOnePage(this.props.currentPage, this.props.countLoad).then(response => {
             this.props.setUsers(response.data.items);
-            this.props.ToggleIsFetching(false)
+            this.props.ToggleIsFetchingLoader(true)
         });
     };
 
     setPage = (val) => {
-        const str = `/api/1.0/users?page=${val}&count=10`;
+        
         this.props.ToggleIsFetching(true)
-        axios.get(str, { headers: {
-        "Authorization": "Bearer c53c392f-f277-4151-adf7-e7718d3ad0a7"
-    }}).then(response => {
+        GetUsersCurrentPage(val).then(response => {
             this.props.SetCurrentPage(val, response.data.items);
             this.props.ToggleIsFetching(false)
         });
     };
-
 
     renderItemsPages = () => {
         let listUsers = [];
@@ -87,6 +80,7 @@ class UsersConteiner extends React.Component {
                                 follow = {this.props.follow}
                                 unfollow = {this.props.unfollow}
                                 isFetching = {this.props.isFetching}
+                                isFetchingLoader = {this.props.isFetchingLoader}
                                 ToggleIsFetching = {this.props.ToggleIsFetching}
                     />
             </>
@@ -100,8 +94,8 @@ const mapStateToProps = (state) =>{
         countUsers: state.UsersPage.countUsers,
         currentPage: state.UsersPage.currentPage,
         countLoad: state.UsersPage.countLoad,
-        isFetching: state.UsersPage.isFetching
-
+        isFetching: state.UsersPage.isFetching,
+        isFetchingLoader: state.UsersPage.isFetchingLoader,
     }
 }
 
@@ -112,7 +106,8 @@ const ConteinerDT = connect(mapStateToProps, {
         setUsers,
         SetCurrentPage,
         SetTotalUsersCount,
-        ToggleIsFetching
+        ToggleIsFetching,
+        ToggleIsFetchingLoader
     })(UsersConteiner)
 
 export default ConteinerDT;

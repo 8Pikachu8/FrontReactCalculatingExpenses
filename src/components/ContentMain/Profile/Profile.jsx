@@ -6,7 +6,7 @@ const Profile = (props) => {
     return (
 			<div className={profileCSS.profile} >
                 <img src = {props.photos.large}/>
-				<p>{props.fullName}</p>
+				<p>{props.fullName}   {props.authId}</p>
 			</div>
 		)
 }

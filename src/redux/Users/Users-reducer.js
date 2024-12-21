@@ -4,7 +4,8 @@ import {
     SET_USERS,
     SET_CURRENT_PAGE,
     SET_TOTAL_USERS_COUNT,
-    TOGGLE_IS_FETCHING
+    TOGGLE_IS_FETCHING,
+    Toggle_Is_Fetching_Loader
 } from './UsersAC'
 
 
@@ -18,7 +19,9 @@ let defState = {
 
     countLoad: 0,
 
-    isFetching: true
+    isFetching: true,
+
+    isFetchingLoader: true
 }
 
 export const UsersReducer = (state = defState, action) =>{
@@ -35,6 +38,8 @@ export const UsersReducer = (state = defState, action) =>{
             return setTotalUsersCount(state, action);
         case TOGGLE_IS_FETCHING:
             return setFetching(state, action);
+        case Toggle_Is_Fetching_Loader:
+            return setFetchingLoader(state, action);
         default:
             return state;
     }
@@ -88,8 +93,26 @@ const setTotalUsersCount = (state, action) => {
 }
 
 const setFetching = (state, action) => {
+
     const temp = {
         ...state,
-        isFetching: action.isFetching};
+        isFetching: action.isFetching,
+        };
+
+    const temp2= {
+        ...state,
+        isFetching: action.isFetching,
+        users:[]};
+
+    return action.isFetching ? temp2:temp
+}
+
+const setFetchingLoader = (state, action) => {
+
+    const temp = {
+        ...state,
+        isFetchingLoader: action.isFetchingLoader,
+    };
+
     return temp
 }
