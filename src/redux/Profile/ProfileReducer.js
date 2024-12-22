@@ -5,6 +5,9 @@ import {
 } from './ProfileCA'
 
 const AddProfile = (newState) => {
+    debugger
+    if(newState === -1)
+        return{ ...newState, userId : newState}
     const newTask = {
         userId: newState.userId,
         lookingForAJob: newState.lookingForAJob,

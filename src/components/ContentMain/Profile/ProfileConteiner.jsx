@@ -2,27 +2,27 @@ import React from "react";
 import {AddProfile, UpdateProfile,ToggleIsFetching} from './../../../redux/Profile/ProfileCA'
 import { connect } from "react-redux";
 import Profile from './Profile';
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import LoaderSpiner from "./../../../assets/LoaderSpiner.svg"
-import { GetProfile } from "../../../api/api";
+import { ProfileAPI } from "../../../api/api";
 
 class ProfileConteiner extends React.Component {
     
     componentDidMount() {
         this.props.ToggleIsFetching(false);
-        GetProfile(this.props.userId == null? this.props.authId: this.props.userId).then(response => {
-            
+        ProfileAPI.GetProfile(this.props.userId == null? this.props.authId == null ? -1:this.props.authId: this.props.userId).then(response => {
+            debugger
             this.props.AddProfile(response.data);
            
-            this.props.ToggleIsFetching(this.props.userId == response.data.userId? true: true);
+            this.props.ToggleIsFetching(response.data === -1? false : true);
         });
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.authId !== prevProps.authId) {
+        debugger
+        if (this.props.authId !== prevProps.authId && this.props.userId == null) {
             this.props.ToggleIsFetching(false);
-            GetProfile(this.props.authId).then(response => {
+            ProfileAPI.GetProfile(this.props.authId).then(response => {
                 this.props.AddProfile(response.data);
                 this.props.ToggleIsFetching(true);
         });
@@ -30,7 +30,7 @@ class ProfileConteiner extends React.Component {
     }
 
     render(){
-        return this.props.isFetching ? <Profile {...this.props}/> : <img src={LoaderSpiner}/>
+        return this.props.isFetching ? <Profile {...this.props}/> : <img src={LoaderSpiner} alt="ФОТО" />
     }
 }
 

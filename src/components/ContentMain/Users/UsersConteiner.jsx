@@ -1,10 +1,9 @@
 import {follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader} from './../../../redux/Users/UsersAC'
 import Users from "./Users";
 import { connect } from "react-redux";
-import axios from "axios";
 import React from "react";
 import usersCSS from "./Users.module.css";
-import { GetUsersCurrentPage, GetUsersDefault, GetUsersPreloadingOnePage } from '../../../api/api';
+import {UserAPI } from '../../../api/api';
 
 
 class UsersConteiner extends React.Component {
@@ -16,7 +15,7 @@ class UsersConteiner extends React.Component {
     componentDidMount() {
         
         this.props.ToggleIsFetching(true)
-        GetUsersDefault(this.props.currentPage).then(response => {
+        UserAPI.GetUsersDefault(this.props.currentPage).then(response => {
             this.props.setUsers(response.data.items);
             this.props.SetTotalUsersCount(response.data.totalCount);
             this.props.ToggleIsFetching(false)
@@ -30,7 +29,7 @@ class UsersConteiner extends React.Component {
 
     fetchUsers = () => {
         this.props.ToggleIsFetchingLoader(false)
-        GetUsersPreloadingOnePage(this.props.currentPage, this.props.countLoad).then(response => {
+        UserAPI.GetUsersPreloadingOnePage(this.props.currentPage, this.props.countLoad).then(response => {
             this.props.setUsers(response.data.items);
             this.props.ToggleIsFetchingLoader(true)
         });
@@ -39,7 +38,7 @@ class UsersConteiner extends React.Component {
     setPage = (val) => {
         
         this.props.ToggleIsFetching(true)
-        GetUsersCurrentPage(val).then(response => {
+        UserAPI.GetUsersDefault(val).then(response => {
             this.props.SetCurrentPage(val, response.data.items);
             this.props.ToggleIsFetching(false)
         });

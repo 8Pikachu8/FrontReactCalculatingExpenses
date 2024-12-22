@@ -2,8 +2,8 @@ import React from "react";
 import userCSS from "./User.module.css";
 import userPhoto from './../../../../assets/logo192.png'
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { AddFollowApi, DeleteFollowApi } from "../../../../api/api";
+
+import {UserAPI } from "../../../../api/api";
 
 const User = (props) => {
     return (
@@ -11,7 +11,7 @@ const User = (props) => {
              <NavLink
 						to={`../profile/${props.user.id}`}
 					>
-                        <img className={userCSS.image} src = {props.user.photos.small != null?props.user.photos.small:userPhoto }/>
+                        <img className={userCSS.image} src = {props.user.photos.small != null?props.user.photos.small:userPhoto } alt="ФОТО" />
 					</NavLink>
 			<div className='block' >
                 <div className={userCSS.userDescription}>
@@ -26,7 +26,7 @@ const User = (props) => {
                 {
                 props.user.followed?<button onClick={() => { 
                     
-                    DeleteFollowApi(props.user.id).then(response => {
+                    UserAPI.DeleteFollowApi(props.user.id).then(response => {
                                             if(response.data.resultCode ===0){
                                                 props.unfollow(props.user.id)
                                             }
@@ -36,7 +36,7 @@ const User = (props) => {
                     
                 }} className={userCSS.button}>Отписаться</button>:<button onClick={() => { 
                     
-                    AddFollowApi(props.user.id).then(response => {
+                    UserAPI.AddFollowApi(props.user.id).then(response => {
                                             if(response.data.resultCode ===0){
                                                 props.follow(props.user.id)
                                             }

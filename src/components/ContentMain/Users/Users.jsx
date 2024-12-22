@@ -17,7 +17,7 @@ let Users = (props) => {
         ));
     };
     return <div>
-                {props.isFetching === true? <img className={usersCSS.img} src = {LoaderSpiner}/>: null}
+                {props.isFetching === true? <img className={usersCSS.img} src = {LoaderSpiner}  alt="ФОТО" />: null}
                 <div className={usersCSS.ListPages}>
                     {props.renderItemsPages()}
                 </div>
@@ -29,7 +29,7 @@ let Users = (props) => {
                 <div className={usersCSS.buttonDiv}>
                     {props.isFetchingLoader ? <button onClick={props.fetchUsers} className={usersCSS.button}>
                         Загрузить еще
-                    </button>: <img className={usersCSS.imgLoader}  src = {TupeSpiner} />}
+                    </button>: <img className={usersCSS.imgLoader}  src = {TupeSpiner}  alt="ФОТО" />}
                     
                 </div>
             </div>

@@ -1,65 +1,67 @@
 import axios from "axios";
 
 const Authorization = "Bearer ae4080b7-6a89-4752-9805-0c12a3de3951";
+const ApiKey = "080fb9e7-833a-47e0-b3c2-142d9d302f9d";
 
-export const GetUsersDefault = (currentPage) => {
+const instance = axios.create({
+    withCredentials: true,
+    baseURL: "https://social-network.samuraijs.com/api/1.0/",
+    headers:{
+            "API-KEY" : ApiKey,
+            "Authorization": Authorization
+            },
+});
 
-    const str = `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=10`;
 
-    return axios.get(str, { headers: {
-        "Authorization": Authorization
-    }})
-} 
+export const UserAPI = {
+    GetUsersDefault(currentPage){
 
-export const GetUsersPreloadingOnePage  = (currentPage, countLoad) => {
-    const str = `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage + countLoad}&count=10`;
-        
-    return axios.get(str, { headers: {
-        "Authorization": Authorization
-    }});
-} 
+        const str = `users?page=${currentPage}&count=10`;
 
-export const GetUsersCurrentPage = (val) => {
+        return instance.get(str)
+    } ,
 
-    const str = `https://social-network.samuraijs.com/api/1.0/users?page=${val}&count=10`;
-        
-    return axios.get(str, { headers: {
-        "Authorization": Authorization
-    }});
-} 
+    GetUsersPreloadingOnePage (currentPage, countLoad)  {
+        const str = `users?page=${currentPage + countLoad}&count=10`;
+            
+        return instance.get(str);
+    } ,
 
-export const GetProfile = (userId) => {
-    const str = `https://social-network.samuraijs.com/api/1.0/profile/${userId == null? 2:userId}`;
-    
-    return axios.get(str);
+    AddFollowApi(id) {
+        const str = `follow/${id}`;
+                        
+        return instance.post(str)
+    },
+
+    DeleteFollowApi(id){
+        const str = `follow/${id}`;
+                    
+        return  instance.delete(str)
+    },
 }
+
+
+export const ProfileAPI = {
+    GetProfile(userId) {
+        const str = `profile/${userId == null? 2:userId}`;
+        if(userId === -1){
+            return Promise.resolve({
+                data: -1,
+                status: null,
+                statusText: null,
+                headers: null,
+                config: null,
+                request: null
+            });
+        }
+        return instance.get(str);
+    },
+}
+
 
 export const SetAuthApi = () => {
-    const str = `https://social-network.samuraijs.com/api/1.0/auth/me`;
-    axios.defaults.withCredentials = true;
-    return axios.get(str, { headers: {
-        "Authorization": Authorization
-    }});
+    const str = `auth/me`;
+    
+    return instance.get(str);
 }
 
-export const AddFollowApi = (id) =>{
-    const str = `https://social-network.samuraijs.com/api/1.0/follow/${id}`;
-                    
-    return axios.post(str,{}, {withCredentials: true,
-                        headers: {
-                                    "API-KEY" : "080fb9e7-833a-47e0-b3c2-142d9d302f9d",
-                                    "Authorization": "Bearer ae4080b7-6a89-4752-9805-0c12a3de3951"
-                                }
-    })
-}
-
-export const DeleteFollowApi = (id) =>{
-    const str = `https://social-network.samuraijs.com/api/1.0/follow/${id}`;
-                   
-    return  axios.delete(str, {withCredentials: true,
-                               headers: {
-                                          "API-KEY" : "080fb9e7-833a-47e0-b3c2-142d9d302f9d",
-                                        "Authorization": "Bearer ae4080b7-6a89-4752-9805-0c12a3de3951"
-                                        }
-                    })
-}
