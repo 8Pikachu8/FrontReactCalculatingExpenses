@@ -24,25 +24,26 @@ const User = (props) => {
 			</div>
             <div className={userCSS.buttonDiv}>
                 {
-                props.user.followed?<button onClick={() => { 
-                    
+                props.user.followed?
+                <button disabled = {props.toogleIsFollowing.some(id => id ===props.user.id)} onClick={() => { 
+                    props.setToggleFollowingProgress(props.user.id);
                     UserAPI.DeleteFollowApi(props.user.id).then(response => {
                                             if(response.data.resultCode ===0){
                                                 props.unfollow(props.user.id)
                                             }
-                                        }).catch(error => {
-                        console.error("Request failed:", error.response || error.message);
-                    });;
+                                            props.setToggleFollowingProgress(props.user.id)
+                                        });
                     
-                }} className={userCSS.button}>Отписаться</button>:<button onClick={() => { 
-                    
+                }} className={userCSS.button}>Отписаться</button>:
+                <button disabled = {props.toogleIsFollowing.some(id => id ===props.user.id)}  onClick={() => { 
+                   
+                    props.setToggleFollowingProgress(props.user.id);
                     UserAPI.AddFollowApi(props.user.id).then(response => {
                                             if(response.data.resultCode ===0){
                                                 props.follow(props.user.id)
                                             }
-                                        }).catch(error => {
-                        console.error("Request failed:", error.response || error.message);
-                    });;
+                                            props.setToggleFollowingProgress(props.user.id)
+                                        });
 
                     
 

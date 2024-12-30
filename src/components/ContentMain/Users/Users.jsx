@@ -13,6 +13,8 @@ let Users = (props) => {
                 follow={props.follow}
                 unfollow={props.unfollow}
                 user={user}
+                setToggleFollowingProgress = {props.setToggleFollowingProgress}
+                toogleIsFollowing = {props.toogleIsFollowing}
             />
         ));
     };

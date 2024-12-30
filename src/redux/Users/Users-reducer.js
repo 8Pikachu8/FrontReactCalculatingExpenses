@@ -1,3 +1,4 @@
+
 import {
 	FOLLOW,
     UNFOLLOW,
@@ -5,8 +6,11 @@ import {
     SET_CURRENT_PAGE,
     SET_TOTAL_USERS_COUNT,
     TOGGLE_IS_FETCHING,
-    Toggle_Is_Fetching_Loader
+    Toggle_Is_Fetching_Loader,
+    TOGGLE_IS_FOLLOWING_PROGRESS, follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader, ToggleIsFollowingProgress
 } from './UsersAC'
+import {UserAPI } from '../../api/api';
+import { retry } from '@reduxjs/toolkit/query';
 
 
 let defState = {
@@ -21,31 +25,35 @@ let defState = {
 
     isFetching: true,
 
-    isFetchingLoader: true
+    isFetchingLoader: true,
+
+    toogleIsFollowing: []
 }
 
 export const UsersReducer = (state = defState, action) =>{
     switch (action.type) {
         case FOLLOW:
-            return follow(state, action); 
+            return SetFollow(state, action); 
         case UNFOLLOW:
-            return unfollow(state, action); 
+            return SetUnfollow(state, action); 
         case SET_USERS:
-            return setUsers(state, action); 
+            return setUsersState(state, action); 
         case SET_CURRENT_PAGE:
-            return setCurrentPage(state, action);
+            return setCurrentPageState(state, action);
         case SET_TOTAL_USERS_COUNT:
-            return setTotalUsersCount(state, action);
+            return setTotalUsersCountState(state, action);
         case TOGGLE_IS_FETCHING:
-            return setFetching(state, action);
+            return setFetchingState(state, action);
         case Toggle_Is_Fetching_Loader:
-            return setFetchingLoader(state, action);
+            return setFetchingLoaderState(state, action);
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return setFollowingState(state,action);
         default:
             return state;
     }
 }
 
-const follow = (state, action) => {
+const SetFollow = (state, action) => {
     return {...state,
                 users: state.users.map(u => {
                 if(u.id === action.id){
@@ -54,7 +62,7 @@ const follow = (state, action) => {
                 return u; })}; 
 }
 
-const unfollow = (state, action) => {
+const SetUnfollow = (state, action) => {
     const temp = {...state,
                 users: state.users.map(u => {
                 if(u.id === action.id){
@@ -64,7 +72,7 @@ const unfollow = (state, action) => {
     return temp; 
 }
 
-const setUsers = (state, action) => {
+const setUsersState = (state, action) => {
     const temp = {
         ...state,
         users: [...state.users, ...action.users.filter(newUser => 
@@ -74,7 +82,7 @@ const setUsers = (state, action) => {
     
 }
 
-const setCurrentPage = (state, action) => {
+const setCurrentPageState = (state, action) => {
     const temp = {
         ...state,
         users: [...action.users],
@@ -84,7 +92,7 @@ const setCurrentPage = (state, action) => {
     
 }
 
-const setTotalUsersCount = (state, action) => {
+const setTotalUsersCountState = (state, action) => {
     const temp = {
         ...state,
         countUsers: action.usersCount};
@@ -92,7 +100,7 @@ const setTotalUsersCount = (state, action) => {
     
 }
 
-const setFetching = (state, action) => {
+const setFetchingState = (state, action) => {
 
     const temp = {
         ...state,
@@ -107,7 +115,7 @@ const setFetching = (state, action) => {
     return action.isFetching ? temp2:temp
 }
 
-const setFetchingLoader = (state, action) => {
+const setFetchingLoaderState = (state, action) => {
 
     const temp = {
         ...state,
@@ -115,4 +123,39 @@ const setFetchingLoader = (state, action) => {
     };
 
     return temp
+}
+
+const setFollowingState = (state, action) => {
+
+    const temp = {
+        ...state,
+        toogleIsFollowing: state.toogleIsFollowing.some(id=> id===action.toogleIsFollowing)? 
+                            state.toogleIsFollowing.filter(id => id!== action.toogleIsFollowing):
+                            [...state.toogleIsFollowing, action.toogleIsFollowing],
+    };
+
+    return temp
+}
+
+export const GetUsersNewPageThunkCreator = (currentPage) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFetching(true))
+        UserAPI.GetUsersDefault(currentPage).then(response => {
+            dispatch(SetCurrentPage(currentPage, response.data.items));
+            dispatch(SetTotalUsersCount(response.data.totalCount));
+            dispatch(ToggleIsFetching(false));
+        });
+    }
+}
+
+export const GetUsersPreloadingPageThunkCreator = (currentPage, countLoad) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFetchingLoader(false));
+        UserAPI.GetUsersPreloadingOnePage(currentPage, countLoad).then(response => {
+            dispatch(setUsers(response.data.items));
+            dispatch(ToggleIsFetchingLoader(true));
+        });
+    }
 }

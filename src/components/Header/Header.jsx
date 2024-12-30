@@ -11,7 +11,7 @@ const Header = (props) => {
 						<button className = {headerCSS.ulButton} onClick={props.toggleNavVisibility}>=</button>
 					</li>
 					<li>
-						<a href='#'>Яблоко</a>
+						<a href='#'>Привет</a>
 					</li>
 					<li>
 						<a href='#'>Персик</a>

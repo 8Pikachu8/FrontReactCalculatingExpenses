@@ -39,3 +39,7 @@
     border-color: #720404; /* (необязательно) Изменить цвет границы */
     box-shadow: -2px -2px 5px #ddd;
 }
+
+.button:disabled {
+    background-color: #2406ca;
+}

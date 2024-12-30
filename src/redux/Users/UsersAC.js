@@ -21,3 +21,5 @@ export const SetTotalUsersCount = (usersCount) => ({type:  SET_TOTAL_USERS_COUNT
 export const ToggleIsFetching = (isFetching) => ({type:  TOGGLE_IS_FETCHING, isFetching})
 
 export const ToggleIsFetchingLoader = (isFetchingLoader) => ({type: Toggle_Is_Fetching_Loader, isFetchingLoader})
+
+export const ToggleIsFollowingProgress = (toogleIsFollowing) => ({type:TOGGLE_IS_FOLLOWING_PROGRESS, toogleIsFollowing})

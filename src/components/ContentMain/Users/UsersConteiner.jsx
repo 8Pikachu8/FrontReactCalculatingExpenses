@@ -1,4 +1,5 @@
-import {follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader} from './../../../redux/Users/UsersAC'
+import {follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader, ToggleIsFollowingProgress} from './../../../redux/Users/UsersAC'
+import {GetUsersNewPageThunkCreator,GetUsersPreloadingPageThunkCreator} from './../../../redux/Users/Users-reducer'
 import Users from "./Users";
 import { connect } from "react-redux";
 import React from "react";
@@ -13,13 +14,7 @@ class UsersConteiner extends React.Component {
     }
 
     componentDidMount() {
-        
-        this.props.ToggleIsFetching(true)
-        UserAPI.GetUsersDefault(this.props.currentPage).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.SetTotalUsersCount(response.data.totalCount);
-            this.props.ToggleIsFetching(false)
-        });
+        this.props.GetUsersNewPageThunkCreator(this.props.currentPage);
     }
 
     componentWillUnmount() {
@@ -28,32 +23,19 @@ class UsersConteiner extends React.Component {
     }
 
     fetchUsers = () => {
-        this.props.ToggleIsFetchingLoader(false)
-        UserAPI.GetUsersPreloadingOnePage(this.props.currentPage, this.props.countLoad).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.ToggleIsFetchingLoader(true)
-        });
-    };
-
-    setPage = (val) => {
-        
-        this.props.ToggleIsFetching(true)
-        UserAPI.GetUsersDefault(val).then(response => {
-            this.props.SetCurrentPage(val, response.data.items);
-            this.props.ToggleIsFetching(false)
-        });
+        this.props.GetUsersPreloadingPageThunkCreator(this.props.currentPage, this.props.countLoad);
     };
 
     renderItemsPages = () => {
-        let listUsers = [];
+        let listPages = [];
         for (let i = 1; i <= Math.ceil(this.props.countUsers / 10); i++) {
-            listUsers.push(i);
+            listPages.push(i);
         }
 
-        const arr = listUsers.map(val => (
+        const arr = listPages.map(val => (
             <div
                 key={val}
-                onClick={() => this.setPage(val)}
+                onClick={() => this.props.GetUsersNewPageThunkCreator(val)}
                 className={this.props.currentPage === val ? usersCSS.ItemPagesSelected : usersCSS.ItemPages}
             >
                 {val}
@@ -69,6 +51,10 @@ class UsersConteiner extends React.Component {
         return [...firstFive, ...lastFive];
     };
 
+    setToggleFollowingProgress = (val) =>{
+        this.props.ToggleIsFollowingProgress(val)
+    }
+
     render() {
         return <>
                 
@@ -81,6 +67,8 @@ class UsersConteiner extends React.Component {
                                 isFetching = {this.props.isFetching}
                                 isFetchingLoader = {this.props.isFetchingLoader}
                                 ToggleIsFetching = {this.props.ToggleIsFetching}
+                                setToggleFollowingProgress = {this.setToggleFollowingProgress}
+                                toogleIsFollowing = {this.props.toogleIsFollowing}
                     />
             </>
     }
@@ -95,6 +83,7 @@ const mapStateToProps = (state) =>{
         countLoad: state.UsersPage.countLoad,
         isFetching: state.UsersPage.isFetching,
         isFetchingLoader: state.UsersPage.isFetchingLoader,
+        toogleIsFollowing: state.UsersPage.toogleIsFollowing,
     }
 }
 
@@ -106,7 +95,10 @@ const ConteinerDT = connect(mapStateToProps, {
         SetCurrentPage,
         SetTotalUsersCount,
         ToggleIsFetching,
-        ToggleIsFetchingLoader
+        ToggleIsFetchingLoader,
+        ToggleIsFollowingProgress,
+        GetUsersNewPageThunkCreator,
+        GetUsersPreloadingPageThunkCreator
     })(UsersConteiner)
 
 export default ConteinerDT;
