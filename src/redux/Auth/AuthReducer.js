@@ -1,8 +1,11 @@
+import { retry } from '@reduxjs/toolkit/query';
 import {
-    setAuth
+    setAuth,
+    SetAuth
 } from './AuthCreateActions'
+import { SetAuthApi } from '../../api/api';
 
-const SetAuth = (state) => {
+const SetAuthState = (state) => {
     const newTask = {
         id: state.data.id,
         email: state.data.email,
@@ -27,8 +30,21 @@ let defState = {
 export const AuthReducer = (state = defState, action) =>{
     switch (action.type) {
         case setAuth:
-            return SetAuth(action); // Возвращаем новое состояние
+            return SetAuthState(action); // Возвращаем новое состояние
         default:
             return state;
+    }
+}
+
+export const SetNewAuth = () => {
+
+    return (dispatch) => {
+        SetAuthApi().then(response => {
+            console.log(response.data.data)
+            if(response.data.resultCode ===0){
+                dispatch(SetAuth(response.data.data));
+            }
+                
+        });
     }
 }

@@ -10,11 +10,10 @@ let Users = (props) => {
         return props.users.map(user => (
             <User
                 key={user.id}
-                follow={props.follow}
-                unfollow={props.unfollow}
                 user={user}
-                setToggleFollowingProgress = {props.setToggleFollowingProgress}
                 toogleIsFollowing = {props.toogleIsFollowing}
+                SetFollowingOnUser = {props.SetFollowingOnUser}
+                DeleteFollowingOnUser = {props.DeleteFollowingOnUser}
             />
         ));
     };

@@ -1,31 +1,20 @@
 import React from "react";
-import {AddProfile, UpdateProfile,ToggleIsFetching} from './../../../redux/Profile/ProfileCA'
+import {AddProfile, ToggleIsFetching} from './../../../redux/Profile/ProfileCA'
 import { connect } from "react-redux";
 import Profile from './Profile';
 import { useParams } from "react-router-dom";
 import LoaderSpiner from "./../../../assets/LoaderSpiner.svg"
-import { ProfileAPI } from "../../../api/api";
+import { LoadNewProfile } from "../../../redux/Profile/ProfileReducer";
 
 class ProfileConteiner extends React.Component {
     
     componentDidMount() {
-        this.props.ToggleIsFetching(false);
-        ProfileAPI.GetProfile(this.props.userId == null? this.props.authId == null ? -1:this.props.authId: this.props.userId).then(response => {
-            debugger
-            this.props.AddProfile(response.data);
-           
-            this.props.ToggleIsFetching(response.data === -1? false : true);
-        });
+        this.props.LoadNewProfile(this.props.userId == null? this.props.authId == null ? -1:this.props.authId: this.props.userId);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        debugger
         if (this.props.authId !== prevProps.authId && this.props.userId == null) {
-            this.props.ToggleIsFetching(false);
-            ProfileAPI.GetProfile(this.props.authId).then(response => {
-                this.props.AddProfile(response.data);
-                this.props.ToggleIsFetching(true);
-        });
+            this.props.LoadNewProfile(this.props.authId);
         }
     }
 
@@ -48,11 +37,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-        CallBackUpdate: (event) => {
-            let text = event.target.value
-            dispatch(UpdateProfile(text))
-            console.log(text)
-        },
+        
         AddProfile: (user) => {
             dispatch(AddProfile(user))
         },
@@ -68,4 +53,4 @@ const WithRouterProfile = (props) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithRouterProfile);
+export default connect(mapStateToProps,{ AddProfile, LoadNewProfile, ToggleIsFetching})(WithRouterProfile);

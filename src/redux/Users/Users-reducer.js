@@ -159,3 +159,29 @@ export const GetUsersPreloadingPageThunkCreator = (currentPage, countLoad) => {
         });
     }
 }
+
+export const SetFollowingOnUser = (userId) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFollowingProgress(userId));
+        UserAPI.AddFollowApi(userId).then(response => {
+                if(response.data.resultCode ===0){
+                    dispatch(follow(userId))
+                }
+            dispatch(ToggleIsFollowingProgress(userId))
+        });
+    }
+}
+
+export const DeleteFollowingOnUser = (userId) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFollowingProgress(userId));
+        UserAPI.DeleteFollowApi(userId).then(response => {
+                if(response.data.resultCode ===0){
+                    dispatch(unfollow(userId))
+                }
+            dispatch(ToggleIsFollowingProgress(userId))
+        });
+    }
+}

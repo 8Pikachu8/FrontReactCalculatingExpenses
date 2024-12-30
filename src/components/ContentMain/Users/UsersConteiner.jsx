@@ -1,10 +1,9 @@
-import {follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader, ToggleIsFollowingProgress} from './../../../redux/Users/UsersAC'
-import {GetUsersNewPageThunkCreator,GetUsersPreloadingPageThunkCreator} from './../../../redux/Users/Users-reducer'
+
+import {GetUsersNewPageThunkCreator,GetUsersPreloadingPageThunkCreator,SetFollowingOnUser, DeleteFollowingOnUser} from './../../../redux/Users/Users-reducer'
 import Users from "./Users";
 import { connect } from "react-redux";
 import React from "react";
 import usersCSS from "./Users.module.css";
-import {UserAPI } from '../../../api/api';
 
 
 class UsersConteiner extends React.Component {
@@ -15,11 +14,6 @@ class UsersConteiner extends React.Component {
 
     componentDidMount() {
         this.props.GetUsersNewPageThunkCreator(this.props.currentPage);
-    }
-
-    componentWillUnmount() {
-        this.props.setUsers([]);
-        this.props.SetTotalUsersCount(0);
     }
 
     fetchUsers = () => {
@@ -51,9 +45,6 @@ class UsersConteiner extends React.Component {
         return [...firstFive, ...lastFive];
     };
 
-    setToggleFollowingProgress = (val) =>{
-        this.props.ToggleIsFollowingProgress(val)
-    }
 
     render() {
         return <>
@@ -62,13 +53,11 @@ class UsersConteiner extends React.Component {
                                 users = {this.props.users}
                                 renderItemsPages = {this.renderItemsPages}
                                 fetchUsers = {this.fetchUsers}
-                                follow = {this.props.follow}
-                                unfollow = {this.props.unfollow}
                                 isFetching = {this.props.isFetching}
                                 isFetchingLoader = {this.props.isFetchingLoader}
-                                ToggleIsFetching = {this.props.ToggleIsFetching}
-                                setToggleFollowingProgress = {this.setToggleFollowingProgress}
                                 toogleIsFollowing = {this.props.toogleIsFollowing}
+                                SetFollowingOnUser = {this.props.SetFollowingOnUser}
+                                DeleteFollowingOnUser = {this.props.DeleteFollowingOnUser}
                     />
             </>
     }
@@ -89,16 +78,11 @@ const mapStateToProps = (state) =>{
 
 
 const ConteinerDT = connect(mapStateToProps, {
-        follow,
-        unfollow,
-        setUsers,
-        SetCurrentPage,
-        SetTotalUsersCount,
-        ToggleIsFetching,
-        ToggleIsFetchingLoader,
-        ToggleIsFollowingProgress,
+        
         GetUsersNewPageThunkCreator,
-        GetUsersPreloadingPageThunkCreator
+        GetUsersPreloadingPageThunkCreator,
+        SetFollowingOnUser,
+        DeleteFollowingOnUser
     })(UsersConteiner)
 
 export default ConteinerDT;

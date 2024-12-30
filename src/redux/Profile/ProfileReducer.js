@@ -1,11 +1,12 @@
+import { ProfileAPI } from '../../api/api';
 import {
     addProfile,
-    updateProfile,
-    TOGGLE_IS_FETCHING
+    AddProfile,
+    TOGGLE_IS_FETCHING,
+    ToggleIsFetching
 } from './ProfileCA'
 
-const AddProfile = (newState) => {
-    debugger
+const AddProfileState = (newState) => {
     if(newState === -1)
         return{ ...newState, userId : newState}
     const newTask = {
@@ -35,14 +36,8 @@ const AddProfile = (newState) => {
     };
 };
 
-const UpdateProfile = (val, state) => {
-    return {
-        ...state,
-        newTask: { ...state.newTask, Task: val }, // Создаем новый объект с обновленным значением
-    };
-};
 
-const setFetching = (state, action) => {
+const setFetchingState = (state, action) => {
     const temp = {
         ...state,
         isFetching: action.isFetching,
@@ -77,12 +72,22 @@ let defState = {
 export const ProfileReducer = (state = defState, action) =>{
     switch (action.type) {
         case addProfile:
-            return AddProfile(action.user); // Возвращаем новое состояние
-        case updateProfile:
-            return UpdateProfile(action.val, state); // Возвращаем новое состояние
+            return AddProfileState(action.user); // Возвращаем новое состояние
         case TOGGLE_IS_FETCHING:
-                    return setFetching(state, action);
+            return setFetchingState(state, action);
         default:
             return state;
+    }
+}
+
+
+export const LoadNewProfile = (userId) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFetching(false));
+        ProfileAPI.GetProfile(userId).then(response => {
+            dispatch(AddProfile(response.data));
+            dispatch(ToggleIsFetching(response.data === -1? false : true));
+        });
     }
 }
