@@ -2,6 +2,8 @@ import Block from './Block'
 import BlockButtons from './BlockButtons'
 import BlockTable from './TableElement/BlockTable'
 import statisticCSS from  './Statistics.module.css'
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
+import { compose } from 'redux'
 
 const Statistics = (props) => {
 	return (
@@ -17,4 +19,5 @@ const Statistics = (props) => {
 	)
 }
 
-export default Statistics
+
+export default compose(withAuthRedirect)(Statistics)

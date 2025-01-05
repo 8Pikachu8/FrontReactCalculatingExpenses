@@ -2,13 +2,14 @@ import { ProfileAPI } from '../../api/api';
 import {
     addProfile,
     AddProfile,
+    Set_Status,
     TOGGLE_IS_FETCHING,
     ToggleIsFetching
 } from './ProfileCA'
 
 const AddProfileState = (newState) => {
     if(newState === -1)
-        return{ ...newState, userId : newState}
+        return{ ...defState}
     const newTask = {
         userId: newState.userId,
         lookingForAJob: newState.lookingForAJob,
@@ -21,14 +22,15 @@ const AddProfileState = (newState) => {
             instagram: newState.contacts.instagram,
             twitter: newState.contacts.twitter,
             website: newState.contacts.website,
-            youtube: newState.contacts.youtube,
+            youtube: newState.contacts.youtube, 
             mainLink: newState.contactsmainLink
         },
         photos: { 
             small: newState.photos.small,
             large: newState.photos.large
         },
-        isFetching: newState.isFetching
+        isFetching: newState.isFetching,
+        status: "status"
     };
 
     return {
@@ -47,8 +49,18 @@ const setFetchingState = (state, action) => {
 }
 
 
+const setNewStatus = (state, action) => {
+    const temp = {
+        ...state,
+        status: action.status,
+    };
+
+    return temp
+}
+
+
 let defState = {
-    userId: 2,
+    userId: -1,
     lookingForAJob: true,
     lookingForAJobDescription: "Description",
     fullName: "Елисеев Иван Владимирович",
@@ -67,14 +79,19 @@ let defState = {
         large: "string"
     },
 
+    status: "status",
+
     isFetching: true
 }
+
 export const ProfileReducer = (state = defState, action) =>{
     switch (action.type) {
         case addProfile:
             return AddProfileState(action.user); // Возвращаем новое состояние
         case TOGGLE_IS_FETCHING:
             return setFetchingState(state, action);
+        case Set_Status:
+            return setNewStatus(state, action);
         default:
             return state;
     }
@@ -87,7 +104,7 @@ export const LoadNewProfile = (userId) => {
         dispatch(ToggleIsFetching(false));
         ProfileAPI.GetProfile(userId).then(response => {
             dispatch(AddProfile(response.data));
-            dispatch(ToggleIsFetching(response.data === -1? false : true));
+            dispatch(ToggleIsFetching(response.data === -1? true : true));
         });
     }
 }

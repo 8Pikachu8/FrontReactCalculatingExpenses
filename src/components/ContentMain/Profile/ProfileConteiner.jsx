@@ -5,6 +5,8 @@ import Profile from './Profile';
 import { useParams } from "react-router-dom";
 import LoaderSpiner from "./../../../assets/LoaderSpiner.svg"
 import { LoadNewProfile } from "../../../redux/Profile/ProfileReducer";
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class ProfileConteiner extends React.Component {
     
@@ -13,6 +15,7 @@ class ProfileConteiner extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        debugger
         if (this.props.authId !== prevProps.authId && this.props.userId == null) {
             this.props.LoadNewProfile(this.props.authId);
         }
@@ -32,18 +35,7 @@ const mapStateToProps = (state) =>{
         lookingForAJob: state.ProfilePage.lookingForAJob,
         authId: state.AuthPage.id,
         isFetching: state.ProfilePage.isFetching,
-    }
-}
-
-const mapDispatchToProps = (dispatch) =>{
-    return {
-        
-        AddProfile: (user) => {
-            dispatch(AddProfile(user))
-        },
-        ToggleIsFetching: (isFetching) =>{
-            dispatch(ToggleIsFetching(isFetching))
-        }
+        status: state.ProfilePage.status
     }
 }
 
@@ -53,4 +45,4 @@ const WithRouterProfile = (props) => {
 };
 
 
-export default connect(mapStateToProps,{ AddProfile, LoadNewProfile, ToggleIsFetching})(WithRouterProfile);
+export default compose(connect(mapStateToProps,{ AddProfile, LoadNewProfile, ToggleIsFetching}),withAuthRedirect)(WithRouterProfile)

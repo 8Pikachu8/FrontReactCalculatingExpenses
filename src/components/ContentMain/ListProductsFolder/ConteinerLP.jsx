@@ -1,4 +1,6 @@
 
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
 import ListProducts from './ListProducts'
 import { connect } from "react-redux";
 
@@ -10,6 +12,5 @@ const mapStateToProps = (state) =>{
 }
 
 
-const ConteinerLP = connect(mapStateToProps)(ListProducts)
 
-export default ConteinerLP;
+export default compose(connect(mapStateToProps),withAuthRedirect)(ListProducts)

@@ -4,12 +4,13 @@ import Users from "./Users";
 import { connect } from "react-redux";
 import React from "react";
 import usersCSS from "./Users.module.css";
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 
 class UsersConteiner extends React.Component {
     constructor(props) {
         super(props);
-        this.countLoad = 0;
     }
 
     componentDidMount() {
@@ -17,6 +18,7 @@ class UsersConteiner extends React.Component {
     }
 
     fetchUsers = () => {
+        debugger
         this.props.GetUsersPreloadingPageThunkCreator(this.props.currentPage, this.props.countLoad);
     };
 
@@ -77,12 +79,12 @@ const mapStateToProps = (state) =>{
 }
 
 
-const ConteinerDT = connect(mapStateToProps, {
-        
-        GetUsersNewPageThunkCreator,
-        GetUsersPreloadingPageThunkCreator,
-        SetFollowingOnUser,
-        DeleteFollowingOnUser
-    })(UsersConteiner)
-
-export default ConteinerDT;
+export default compose(
+    connect(mapStateToProps, {
+            GetUsersNewPageThunkCreator,
+            GetUsersPreloadingPageThunkCreator,
+            SetFollowingOnUser,
+            DeleteFollowingOnUser 
+        }),
+    withAuthRedirect)
+    (UsersConteiner)

@@ -23,4 +23,6 @@ const UpdateProducts = (props) => {
 	)
 }
 
+
+
 export default UpdateProducts

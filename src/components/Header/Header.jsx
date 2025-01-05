@@ -23,7 +23,7 @@ const Header = (props) => {
 						<a href='#'>Огурец</a>
 					</li>
 					
-					<div className={headerCSS.login}><NavLink to='/auth'>{props.data.login}</NavLink></div>
+					<div className={headerCSS.login}>{props.data.login ==null ? <NavLink to='/auth'>Login</NavLink>:<NavLink to={'/profile/' + props.data.id}>{props.data.login}</NavLink>}</div>
 					
 				</ul>
 			</div>

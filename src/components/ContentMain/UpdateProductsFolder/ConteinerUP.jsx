@@ -10,6 +10,8 @@ import {AddProductActionCreator,
 } from '../../../redux/UpdateProduct/UpdPageCreateActions'
 import UpdateProducts from './UpdateProducts'
 import { connect } from 'react-redux'
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
+import { compose } from 'redux'
 
 
 const mapStateToProps = (state) =>{
@@ -58,5 +60,5 @@ const mapDispatchToProps = (dispatch) =>{
 	}
 }
 
-const ConteinerUP = connect(mapStateToProps, mapDispatchToProps)(UpdateProducts)
-export default ConteinerUP
+
+export default compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirect)(UpdateProducts)

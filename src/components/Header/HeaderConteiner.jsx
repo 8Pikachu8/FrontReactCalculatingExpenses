@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Header from './Header'
 import React from "react";
 import {SetNewAuth} from './../../redux/Auth/AuthReducer'
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 
 
@@ -27,7 +29,4 @@ const mapStateToProps = (state) =>{
     }
 }
 
-
-
-
-export default connect(mapStateToProps,{SetNewAuth})(HeaderConteiner);
+export default compose(connect(mapStateToProps,{SetNewAuth}))(HeaderConteiner)

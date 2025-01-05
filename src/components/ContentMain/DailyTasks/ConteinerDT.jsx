@@ -1,3 +1,5 @@
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
 import {UpdateTaskActionCreator,AddTaskActionCreator} from './../../../redux/DailyTask/UpdTasksCreateActions'
 import DailyTasks from "./DailyTasks";
 import { connect } from "react-redux";
@@ -25,6 +27,5 @@ const mapDispatchToProps = (dispatch) =>{
     }
 }
 
-const ConteinerDT = connect(mapStateToProps, mapDispatchToProps)(DailyTasks)
 
-export default ConteinerDT;
+export default compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirect)(DailyTasks)

@@ -1,4 +1,4 @@
-import { retry } from '@reduxjs/toolkit/query';
+
 import {
     setAuth,
     SetAuth
@@ -10,6 +10,7 @@ const SetAuthState = (state) => {
         id: state.data.id,
         email: state.data.email,
         login: state.data.login,
+        isAuth: true
     };
 
     return {
@@ -18,14 +19,11 @@ const SetAuthState = (state) => {
     };
 };
 
-
-
-
 let defState = {
 	id: null,
     email: null,
     login: null,
-    isLogin: null
+    isAuth: false
 }
 export const AuthReducer = (state = defState, action) =>{
     switch (action.type) {
