@@ -3,14 +3,16 @@ import {
     addProfile,
     AddProfile,
     Set_Status,
+    SetStatus,
     TOGGLE_IS_FETCHING,
     ToggleIsFetching
 } from './ProfileCA'
 
-const AddProfileState = (newState) => {
+const AddProfileState = (state, newState) => {
     if(newState === -1)
         return{ ...defState}
     const newTask = {
+        ...state,
         userId: newState.userId,
         lookingForAJob: newState.lookingForAJob,
         lookingForAJobDescription: newState.lookingForAJobDescription,
@@ -30,7 +32,6 @@ const AddProfileState = (newState) => {
             large: newState.photos.large
         },
         isFetching: newState.isFetching,
-        status: "status"
     };
 
     return {
@@ -87,7 +88,7 @@ let defState = {
 export const ProfileReducer = (state = defState, action) =>{
     switch (action.type) {
         case addProfile:
-            return AddProfileState(action.user); // Возвращаем новое состояние
+            return AddProfileState(state, action.user); // Возвращаем новое состояние
         case TOGGLE_IS_FETCHING:
             return setFetchingState(state, action);
         case Set_Status:
@@ -105,6 +106,28 @@ export const LoadNewProfile = (userId) => {
         ProfileAPI.GetProfile(userId).then(response => {
             dispatch(AddProfile(response.data));
             dispatch(ToggleIsFetching(response.data === -1? true : true));
+        });
+    }
+}
+
+export const LoadNewStatus = (userId) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFetching(false));
+        ProfileAPI.GetStatus(userId).then(response => {
+            dispatch(SetStatus(response.data));
+            dispatch(ToggleIsFetching(true));
+        });
+    }
+}
+
+export const UpdateNewStatus = (status) => {  
+    
+    return (dispatch) => {
+        dispatch(ToggleIsFetching(false));
+        ProfileAPI.UpdateStatus(status).then(response => {
+            dispatch(SetStatus(status));
+            dispatch(ToggleIsFetching(true));
         });
     }
 }

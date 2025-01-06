@@ -10,7 +10,7 @@ export let UpdateProfile = (val) => ( {
 
 export let SetStatus = (val) => ( {
         type: Set_Status,
-        val: val
+        status: val
     }
 )
 

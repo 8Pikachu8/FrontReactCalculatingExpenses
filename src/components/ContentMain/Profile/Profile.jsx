@@ -4,8 +4,6 @@ import { Navigate } from "react-router-dom";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const Profile = (props) => {
-	debugger
-	console.log("mapStateToProps called", props.listTasks);
 	
 
     return (
@@ -19,7 +17,7 @@ const Profile = (props) => {
 				<p>{props.contacts.website}  </p>
 				<p>{props.contacts.youtube}  </p>
 				<p>{props.contacts.mainLink} </p>
-				<ProfileStatus status = {props.status}/>
+				<ProfileStatus userId = {props.userId} authId = {props.authId} UpdateNewStatus = {props.UpdateNewStatus} updateStatus = {props.updateStatus} status = {props.status}/>
 			</div>
 		)
 }

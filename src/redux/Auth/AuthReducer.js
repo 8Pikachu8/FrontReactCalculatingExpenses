@@ -38,7 +38,6 @@ export const SetNewAuth = () => {
 
     return (dispatch) => {
         SetAuthApi().then(response => {
-            console.log(response.data.data)
             if(response.data.resultCode ===0){
                 dispatch(SetAuth(response.data.data));
             }

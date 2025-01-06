@@ -1,15 +1,17 @@
 import { NavLink } from 'react-router-dom'
 import navCSS from './Nav.module.css'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 
-const Nav = ({ isVisible, toggleNavVisibility}) => {
+const Nav = (props) => {
 	
 	return (
-		<nav className={`${navCSS.nav} ${!isVisible ? navCSS.visible : ''}`} >
+		<nav className={`${navCSS.nav}`} >
 			<ul className={navCSS.ulNav}>
 				<li>
 					<NavLink
 						to='/listProducts'
-						className={props => (props.isActive ? navCSS.activeItemNav : '')}
+						className={props.isActive ? navCSS.activeItemNav : ''}
 					>
 						Список трат
 					</NavLink>
@@ -48,7 +50,7 @@ const Nav = ({ isVisible, toggleNavVisibility}) => {
 				</li>
 				<li>
 					<NavLink
-						to='/profile'
+						to={`/profile/${props.authId}`}
 						className={props => (props.isActive ? navCSS.activeItemNav : '')}
 					>
 						Профиль
@@ -59,4 +61,10 @@ const Nav = ({ isVisible, toggleNavVisibility}) => {
 	)
 }
 
-export default Nav
+const mapStateToProps = (state) =>{
+    return {
+        authId: state.AuthPage.id
+    }
+}
+
+export default compose(connect(mapStateToProps))(Nav)

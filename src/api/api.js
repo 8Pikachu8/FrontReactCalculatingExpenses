@@ -56,6 +56,18 @@ export const ProfileAPI = {
         }
         return instance.get(str);
     },
+
+    GetStatus(userId) {
+        const str = `profile/status/${userId}`;
+        
+        return instance.get(str);
+    },
+
+    UpdateStatus(status) {
+        const str = `profile/status`;
+        
+        return instance.put(str, {status: status});
+    },
 }
 
 

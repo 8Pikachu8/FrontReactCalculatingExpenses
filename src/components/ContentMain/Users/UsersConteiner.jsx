@@ -18,7 +18,6 @@ class UsersConteiner extends React.Component {
     }
 
     fetchUsers = () => {
-        debugger
         this.props.GetUsersPreloadingPageThunkCreator(this.props.currentPage, this.props.countLoad);
     };
 
@@ -66,7 +65,6 @@ class UsersConteiner extends React.Component {
 }
 
 const mapStateToProps = (state) =>{
-    console.log("mapStateToProps called", state.UsersPage);
     return {
         users: state.UsersPage.users,
         countUsers: state.UsersPage.countUsers,

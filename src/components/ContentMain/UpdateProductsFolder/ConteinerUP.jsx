@@ -29,32 +29,26 @@ const mapDispatchToProps = (dispatch) =>{
 		onChangeProductNameVlaue: (event) => {
 			let text = event.target.value
 			dispatch(UpdateProductActionCreator(text))
-			console.log(text)
 		},
 		onChangePriceVlaue: (event) => {
 			let text = event.target.value
 			dispatch(UpdatePriceActionCreator(text))
-			console.log(text)
 		},
 		onChangeDateVlaue: (event) => {
 			let text = event.target.value
 			dispatch(UpdateDateActionCreator(text))
-			console.log(text)
 		},
 		onChangeCountVlaue: (event) => {
 			let text = event.target.value
 			dispatch(UpdateCountActionCreator(text))
-			console.log(text)
 		},
 		onChangeMagazinVlaue: (event) => {
 			let text = event.target.value
 			dispatch(UpdateShopActionCreator(text))
-			console.log(text)
 		},
 		onChangeTypeVlaue: (event) => {
 			let text = event.target.value
 			dispatch(UpdateTypeActionCreator(text))
-			console.log(text)
 		},
 		
 	}

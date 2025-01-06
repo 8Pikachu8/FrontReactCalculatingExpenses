@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch) =>{
         CallBackUpdate: (event) => {
             let text = event.target.value
             dispatch(UpdateTaskActionCreator(text))
-            console.log(text)
         },
         CallBackAdd: () => {
             dispatch(AddTaskActionCreator())

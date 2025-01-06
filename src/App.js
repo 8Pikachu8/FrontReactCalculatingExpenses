@@ -17,18 +17,14 @@ import AuthConteiner from './components/ContentMain/Auth/AuthConteiner';
 const App = () => {
 	const [isNavVisible, setIsNavVisible] = useState(true); // Состояние для видимости навигации
 
-  // Функция для переключения видимости
-  const toggleNavVisibility = () => {
-    setIsNavVisible(prevState => !prevState);
-  };
 
   return (
 		<BrowserRouter>
 			<div className={AppCSS.appWrapper + ' ' + `${!isNavVisible ? AppCSS.navHidden : ''}`}>
 				
-        		<Nav toggleNavVisibility={toggleNavVisibility}  className = {`${!isNavVisible ? AppCSS.navHidden : ''}`} isVisible={isNavVisible} />
+        		<Nav className = { AppCSS.navHidden }  />
 				
-				<HeaderConteiner toggleNavVisibility={toggleNavVisibility} />
+				<HeaderConteiner />
 				<Routes>
 					<Route path='/staticstics' element={<Statistics />} />
 					
@@ -51,10 +47,6 @@ const App = () => {
 					<Route path='/users' 
 						element={
 							<UsersConteiner />
-						} />
-					<Route path='/profile' 
-						element={
-							<ProfileConteiner />
 						} />
 
 					<Route path='/profile/:id?' 

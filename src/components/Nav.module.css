@@ -3,13 +3,9 @@
   grid-area: nav;
   background-color: #121212;
   border-right: 1px solid #ccc;
-  transition: transform 0.3s ease-in-out; /* Анимация выезда */
   z-index: 1000; /* Чтобы быть поверх всего */
 }
 
-.nav.visible{
-  display: none;
-}
 
 .ulNav{
     list-style-type: none;

@@ -1,10 +1,10 @@
 import React from "react";
-import {AddProfile, ToggleIsFetching} from './../../../redux/Profile/ProfileCA'
+import {AddProfile, SetStatus, ToggleIsFetching} from './../../../redux/Profile/ProfileCA'
 import { connect } from "react-redux";
 import Profile from './Profile';
 import { useParams } from "react-router-dom";
 import LoaderSpiner from "./../../../assets/LoaderSpiner.svg"
-import { LoadNewProfile } from "../../../redux/Profile/ProfileReducer";
+import { LoadNewProfile, LoadNewStatus, UpdateNewStatus } from "../../../redux/Profile/ProfileReducer";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
@@ -12,17 +12,27 @@ class ProfileConteiner extends React.Component {
     
     componentDidMount() {
         this.props.LoadNewProfile(this.props.userId == null? this.props.authId == null ? -1:this.props.authId: this.props.userId);
+        this.props.LoadNewStatus(this.props.userId);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        debugger
-        if (this.props.authId !== prevProps.authId && this.props.userId == null) {
-            this.props.LoadNewProfile(this.props.authId);
+        
+        if (prevProps.userId !== this.props.userId) {
+            const userId =
+                this.props.userId;
+            this.props.LoadNewProfile(userId);
+            this.props.LoadNewStatus(userId);
         }
+        
     }
 
-    render(){
-        return this.props.isFetching ? <Profile {...this.props}/> : <img src={LoaderSpiner} alt="ФОТО" />
+    updateStatus = (event) => {
+        let text = event.target.value
+        this.props.SetStatus(text);
+    }
+
+    render() {
+        return this.props.isFetching ? <Profile {...this.props} updateStatus={this.updateStatus} /> : <img src={LoaderSpiner} alt="ФОТО" />
     }
 }
 
@@ -41,8 +51,9 @@ const mapStateToProps = (state) =>{
 
 const WithRouterProfile = (props) => {
     const { id } = useParams();
-    return <ProfileConteiner {...props} userId={id} />;
+    const userId = id ? parseInt(id, 10) : null;
+    return <ProfileConteiner {...props} userId={userId} />;
 };
 
 
-export default compose(connect(mapStateToProps,{ AddProfile, LoadNewProfile, ToggleIsFetching}),withAuthRedirect)(WithRouterProfile)
+export default compose(connect(mapStateToProps,{ AddProfile, LoadNewProfile, ToggleIsFetching, LoadNewStatus, SetStatus, UpdateNewStatus}),withAuthRedirect)(WithRouterProfile)
