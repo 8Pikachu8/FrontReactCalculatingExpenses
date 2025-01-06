@@ -1,27 +1,21 @@
+
 import {
-    AddTask,
-    UpdateTask
+    AddTask
 } from './UpdTasksCreateActions'
 
-const AddTaskF = (state) => {
+const AddTaskF = (state, action) => {
     const newTask = {
-        Id: state.newTask.Id,
-        Task: state.newTask.Task,
+        Id: action.task,
+        Task: action.task,
     };
 
     return {
         ...state,
         listTasks: [...state.listTasks, newTask], // Создаем новый массив с добавленным элементом
-        newTask: { Id: '', Task: '' }, // Создаем новый объект
     };
 };
 
-const UpdateTaskF = (val, state) => {
-    return {
-        ...state,
-        newTask: { ...state.newTask, Task: val }, // Создаем новый объект с обновленным значением
-    };
-};
+
 
 
 let defState = {
@@ -44,17 +38,12 @@ let defState = {
 			newDay:{
 				Id: "--",
 				Day: "--"
-			},
-			newTask:{
-				Id: '--', Task: '--'
 			}
 		}
 export const DailyTasksReducer = (state = defState, action) =>{
     switch (action.type) {
         case AddTask:
-            return AddTaskF(state); // Возвращаем новое состояние
-        case UpdateTask:
-            return UpdateTaskF(action.val, state); // Возвращаем новое состояние
+            return AddTaskF(state, action); // Возвращаем новое состояние
         default:
             return state;
     }

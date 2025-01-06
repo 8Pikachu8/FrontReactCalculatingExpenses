@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 
 let mapStateToProps = (state) =>{
@@ -28,4 +28,12 @@ export const withAuthRedirect = (Component) => {
 
     return ConnectAuthRedirectComponent;
 }
+
+
+export const withRouter = (Component) => {
+    return (props) => {
+        const navigate = useNavigate();
+        return <Component {...props} navigate={navigate} />;
+    };
+};
 

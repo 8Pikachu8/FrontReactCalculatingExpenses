@@ -1,15 +1,8 @@
 
 
 
-export let AddTaskActionCreator = () => ( {type: AddTask,}
+export let AddTaskActionCreator = (task) => ( {type: AddTask, task}
 )
 
-export let UpdateTaskActionCreator = (val) => ( {
-        type: UpdateTask,
-        val: val
-    }
-)
 
 export const AddTask = 'Add-Task'
-
-export const UpdateTask = 'Update-Task'

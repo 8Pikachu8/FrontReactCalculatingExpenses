@@ -7,8 +7,8 @@ const DailyTasks = (props) => {
     return (
 			<div className={dailyTasksCSS.dailyTasks} >
 				<BlockWeeks listWeeks = {props.listWeeks} />
-				<BlockTasks listTasks = {props.listTasks} newTask = {props.newTask}
-								CallBackUpdate = {props.CallBackUpdate} CallBackAdd = {props.CallBackAdd}/>
+				<BlockTasks listTasks = {props.listTasks} 
+								 CallBackAdd = {props.CallBackAdd}/>
 			</div>
 		)
 }

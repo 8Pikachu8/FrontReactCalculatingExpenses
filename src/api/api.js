@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Authorization = "Bearer ae4080b7-6a89-4752-9805-0c12a3de3951";
+const Authorization = "Bearer 7e742482-ba54-4dae-8544-42c7f231b2bb";
 const ApiKey = "080fb9e7-833a-47e0-b3c2-142d9d302f9d";
 
 const instance = axios.create({
@@ -12,6 +12,11 @@ const instance = axios.create({
             },
 });
 
+instance.interceptors.request.use(function (config) {
+   config.headers["Authorization"] = "Bearer " + localStorage.getItem("sn-token");
+
+   return config;
+});
 
 export const UserAPI = {
     GetUsersDefault(currentPage){
@@ -70,10 +75,22 @@ export const ProfileAPI = {
     },
 }
 
+export const AuthApi = {
+    SetAuthApi() {
+        const str = `auth/me`;
+        
+        return instance.get(str);
+    },
 
-export const SetAuthApi = () => {
-    const str = `auth/me`;
-    
-    return instance.get(str);
+    LogIn(email,password) {
+        const str = `auth/login`;
+        return instance.post(str,{email: email, password: password, rememberMe: false});
+    },
+
+    LogOut() {
+        const str = `auth/login`;
+        return instance.delete(str);
+    }
+
 }
 

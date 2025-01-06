@@ -40,6 +40,11 @@
     box-shadow: -2px -2px 5px #ddd;
 }
 
+.button:hover {
+    color: #610202; /* Цвет текста при нажатии */
+    border-color: #720404; /* (необязательно) Изменить цвет границы */
+}
+
 .button:disabled {
     background-color: #2406ca;
 }
