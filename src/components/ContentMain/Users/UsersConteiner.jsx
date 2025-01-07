@@ -21,30 +21,17 @@ class UsersConteiner extends React.Component {
         this.props.GetUsersPreloadingPageThunkCreator(this.props.currentPage, this.props.countLoad);
     };
 
-    renderItemsPages = () => {
-        let listPages = [];
-        for (let i = 1; i <= Math.ceil(this.props.countUsers / 10); i++) {
-            listPages.push(i);
-        }
-
-        const arr = listPages.map(val => (
-            <div
-                key={val}
-                onClick={() => this.props.GetUsersNewPageThunkCreator(val)}
-                className={this.props.currentPage === val ? usersCSS.ItemPagesSelected : usersCSS.ItemPages}
-            >
-                {val}
-            </div>
-        ));
-
-        if (arr.length <= 10) {
-            return arr;
-        }
-
-        const firstFive = arr.slice(0, 5);
-        const lastFive = arr.slice(-5);
-        return [...firstFive, ...lastFive];
-    };
+    mappingArray = (listPages) => {
+        return listPages.map(val => (
+                <div
+                    key={val}
+                    onClick={() => this.props.GetUsersNewPageThunkCreator(val)}
+                    className={this.props.currentPage === val ? usersCSS.ItemPagesSelected : usersCSS.ItemPages}
+                >
+                    {val}
+                </div>
+            ));
+    }
 
 
     render() {
@@ -53,12 +40,15 @@ class UsersConteiner extends React.Component {
                 <Users
                                 users = {this.props.users}
                                 renderItemsPages = {this.renderItemsPages}
+                                currentPage = {this.props.currentPage}
+                                countUsers = {this.props.countUsers}
                                 fetchUsers = {this.fetchUsers}
                                 isFetching = {this.props.isFetching}
                                 isFetchingLoader = {this.props.isFetchingLoader}
                                 toogleIsFollowing = {this.props.toogleIsFollowing}
                                 SetFollowingOnUser = {this.props.SetFollowingOnUser}
                                 DeleteFollowingOnUser = {this.props.DeleteFollowingOnUser}
+                                mappingArray = { this.mappingArray}
                     />
             </>
     }

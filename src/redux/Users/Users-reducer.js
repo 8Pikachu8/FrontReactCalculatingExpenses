@@ -10,7 +10,6 @@ import {
     TOGGLE_IS_FOLLOWING_PROGRESS, follow, unfollow, setUsers, SetCurrentPage,SetTotalUsersCount,ToggleIsFetching, ToggleIsFetchingLoader, ToggleIsFollowingProgress
 } from './UsersAC'
 import {UserAPI } from '../../api/api';
-import { retry } from '@reduxjs/toolkit/query';
 
 
 let defState = {

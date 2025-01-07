@@ -34,6 +34,7 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    width: 800px;
 }
 
 .ItemPages{
@@ -45,6 +46,7 @@
     padding: 5px;
     font-weight: bold; /* Жирный шрифт */
     font-size: large;
+    color: aqua;
 }
 
 .img{
